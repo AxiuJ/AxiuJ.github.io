@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Spring错误记录 | AxiuJ的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="SpringCloud学习中的错误记录1No fallbackFactory instance of type class xxx found for feign client一：yml中的feign:  hystrix:    enabled: true少了二：FallbackFactory中的@Component没写三：springboot启动类位置不对并且 启动时没有扫描到其他包 把启动类向">
+  <meta name="description" content="SpringCloud 学习中的错误记录 1No fallbackFactory instance of type class xxx found for feign client">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring错误记录">
 <meta property="og:url" content="http://yoursite.com/2019/05/29/Spring错误记录/index.html">
 <meta property="og:site_name" content="AxiuJ的博客">
-<meta property="og:description" content="SpringCloud学习中的错误记录1No fallbackFactory instance of type class xxx found for feign client一：yml中的feign:  hystrix:    enabled: true少了二：FallbackFactory中的@Component没写三：springboot启动类位置不对并且 启动时没有扫描到其他包 把启动类向">
+<meta property="og:description" content="SpringCloud 学习中的错误记录 1No fallbackFactory instance of type class xxx found for feign client">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-29T12:34:09.486Z">
+<meta property="og:updated_time" content="2019-06-06T17:23:12.734Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring错误记录">
-<meta name="twitter:description" content="SpringCloud学习中的错误记录1No fallbackFactory instance of type class xxx found for feign client一：yml中的feign:  hystrix:    enabled: true少了二：FallbackFactory中的@Component没写三：springboot启动类位置不对并且 启动时没有扫描到其他包 把启动类向">
+<meta name="twitter:description" content="SpringCloud 学习中的错误记录 1No fallbackFactory instance of type class xxx found for feign client">
   
     <link rel="alternative" href="/atom.xml" title="AxiuJ的博客" type="application/atom+xml">
   
@@ -184,7 +184,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="SpringCloud学习中的错误记录1"><a href="#SpringCloud学习中的错误记录1" class="headerlink" title="SpringCloud学习中的错误记录1"></a>SpringCloud学习中的错误记录1</h1><p>No fallbackFactory instance of type class xxx found for feign client<br>一：yml中的<br>feign:<br>  hystrix:<br>    enabled: true<br>少了<br>二：FallbackFactory中的@Component没写<br>三：springboot启动类位置不对并且 启动时没有扫描到其他包 把启动类向上移动一个包就可以- -（貌似也可以修改@SpringBootApplication ）<br> 小白记录</p>
+        <h1 id="SpringCloud-学习中的错误记录-1"><a href="#SpringCloud-学习中的错误记录-1" class="headerlink" title="SpringCloud 学习中的错误记录 1"></a>SpringCloud 学习中的错误记录 1</h1><p>No fallbackFactory instance of type class xxx found for feign client</p>
+<a id="more"></a>
+<p>一：yml 中的<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">feign:</span></span>
+<span class="line"><span class="attr">  hystrix:</span></span>
+<span class="line"><span class="attr">  enabled:</span> <span class="literal">true</span></span>
+</pre></td></tr></table></figure></p>
+<p>少了<br>二：FallbackFactory 中的@Component 没写<br>三：springboot 启动类位置不对并且 启动时没有扫描到其他包 把启动类向上移动一个包就可以- -（貌似也可以修改@SpringBootApplication ）<br>小白记录</p>
 
       
 

@@ -185,11 +185,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="添加分裂的方法"><a href="#添加分裂的方法" class="headerlink" title="添加分裂的方法"></a>添加分裂的方法</h1><ol>
-<li>在yilia mune中添加需要分类</li>
-<li>写文章时在tags中谐下类别 即可</li>
-</ol>
-
+        <h1 id="博客中添加分类的方法"><a href="#博客中添加分类的方法" class="headerlink" title="博客中添加分类的方法"></a>博客中添加分类的方法</h1>
+        
       
 
       
@@ -262,24 +259,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="翻转链表"><a href="#翻转链表" class="headerlink" title="翻转链表"></a>翻转链表</h1><h2 id="递归思路"><a href="#递归思路" class="headerlink" title="递归思路"></a>递归思路</h2><ol>
-<li>判断什么时候需要结束递归</li>
-</ol>
-<ul>
-<li>结束递归条件为 节点为空 or 节点所指向的节点为空</li>
-<li>将节点返回 在上个节点处将其设为新的头节点；</li>
-</ul>
-<ol start="2">
-<li>由于递归会从后向前返回结果，所以前一位节点的指针不变还会指向当前节点；</li>
-</ol>
-<ul>
-<li>a—&gt;b—&gt;c—&gt;d</li>
-<li>递归结束时放回d给c节点函数;</li>
-<li>c.next.next 就是d的指针 将他该为指向c(即递归函数传入的head参数);</li>
-<li>a—&gt;b-&gt;c&lt;-d （c为参数时执行结果而d的指针没变,从而d的执行不会影响）</li>
-<li>c的指针改为指向null;</li>
-</ul>
-
+        <h1 id="翻转链表"><a href="#翻转链表" class="headerlink" title="翻转链表"></a>翻转链表</h1><h2 id="递归思路"><a href="#递归思路" class="headerlink" title="递归思路"></a>递归思路</h2>
+        
       
 
       
@@ -352,24 +333,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="删除倒数第n个节点"><a href="#删除倒数第n个节点" class="headerlink" title="删除倒数第n个节点"></a>删除倒数第n个节点</h1><h2 id="思路1"><a href="#思路1" class="headerlink" title="思路1:"></a>思路1:</h2><ol>
-<li>循环第一次找出链表长度;</li>
-<li>计算长度-n得出需要删除的节点位置;</li>
-<li>根据节点的位置循环找到需要删除的节点的前一个节点;</li>
-<li>将该节点的指向改为head.next.next(即删除节点后一个节点);</li>
-</ol>
-<hr>
-<h2 id="思路一循环次数过多，容易出现错误-对特殊的链表处理不当会出现bug"><a href="#思路一循环次数过多，容易出现错误-对特殊的链表处理不当会出现bug" class="headerlink" title="思路一循环次数过多，容易出现错误,对特殊的链表处理不当会出现bug"></a>思路一循环次数过多，容易出现错误,对特殊的链表处理不当会出现bug</h2><h2 id="思路2："><a href="#思路2：" class="headerlink" title="思路2："></a>思路2：</h2><ol>
-<li>将链表依次保存到一个list集合中(集合编号0设置为头结点的指向);</li>
-<li>集合长度-n德都需要删除的节点的下标;</li>
-<li>根据下标找到前一个节点，将其指向删除节点所指向的节点;</li>
-</ol>
-<hr>
-<h2 id="思路二利用集合减少循环此次很好的保存每个节点"><a href="#思路二利用集合减少循环此次很好的保存每个节点" class="headerlink" title="思路二利用集合减少循环此次很好的保存每个节点"></a>思路二利用集合减少循环此次很好的保存每个节点</h2>
+        <h1 id="删除倒数第-n-个节点"><a href="#删除倒数第-n-个节点" class="headerlink" title="删除倒数第 n 个节点"></a>删除倒数第 n 个节点</h1><h2 id="思路-1"><a href="#思路-1" class="headerlink" title="思路 1:"></a>思路 1:</h2><ol>
+<li>循环第一次找出链表长度;
+        
       
 
       
-    </div>
+    </li></ol></div>
     <div class="article-info article-info-index">
       
       
@@ -438,8 +408,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="SpringCloud学习中的错误记录1"><a href="#SpringCloud学习中的错误记录1" class="headerlink" title="SpringCloud学习中的错误记录1"></a>SpringCloud学习中的错误记录1</h1><p>No fallbackFactory instance of type class xxx found for feign client<br>一：yml中的<br>feign:<br>  hystrix:<br>    enabled: true<br>少了<br>二：FallbackFactory中的@Component没写<br>三：springboot启动类位置不对并且 启动时没有扫描到其他包 把启动类向上移动一个包就可以- -（貌似也可以修改@SpringBootApplication ）<br> 小白记录</p>
-
+        <h1 id="SpringCloud-学习中的错误记录-1"><a href="#SpringCloud-学习中的错误记录-1" class="headerlink" title="SpringCloud 学习中的错误记录 1"></a>SpringCloud 学习中的错误记录 1</h1><p>No fallbackFactory instance of type class xxx found for feign client</p>
+        
       
 
       
