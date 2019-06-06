@@ -179,7 +179,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="翻转链表"><a href="#翻转链表" class="headerlink" title="翻转链表"></a>翻转链表</h1><h2 id="递归思路"><a href="#递归思路" class="headerlink" title="递归思路"></a>递归思路</h2><ol>
+<li>判断什么时候需要结束递归</li>
+</ol>
+<ul>
+<li>结束递归条件为 节点为空 or 节点所指向的节点为空</li>
+<li>将节点返回 在上个节点处将其设为新的头节点；</li>
+</ul>
+<ol start="2">
+<li>由于递归会从后向前返回结果，所以前一位节点的指针不变还会指向当前节点；</li>
+</ol>
+<ul>
+<li>a—&gt;b—&gt;c—&gt;d</li>
+<li>递归结束时放回d给c节点函数;</li>
+<li>c.next.next 就是d的指针 将他该为指向c(即递归函数传入的head参数);</li>
+<li>a—&gt;b-&gt;c&lt;-d （c为参数时执行结果而d的指针没变,从而d的执行不会影响）</li>
+<li>c的指针改为指向null;</li>
+</ul>
+
       
 
       
