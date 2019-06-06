@@ -159,6 +159,81 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-LeetCode-removeNthFromEnd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/06/LeetCode-removeNthFromEnd/">[LeetCode]removeNthFromEnd</a>
+    </h1>
+  
+
+        
+        <a href="/2019/06/06/LeetCode-removeNthFromEnd/" class="archive-article-date">
+  	<time datetime="2019-06-06T05:20:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="删除倒数第n个节点"><a href="#删除倒数第n个节点" class="headerlink" title="删除倒数第n个节点"></a>删除倒数第n个节点</h1><h2 id="思路1"><a href="#思路1" class="headerlink" title="思路1:"></a>思路1:</h2><ol>
+<li>循环第一次找出链表长度;</li>
+<li>计算长度-n得出需要删除的节点位置;</li>
+<li>根据节点的位置循环找到需要删除的节点的前一个节点;</li>
+<li>将该节点的指向改为head.next.next(即删除节点后一个节点);</li>
+</ol>
+<hr>
+<h2 id="思路一循环次数过多，容易出现错误-对特殊的链表处理不当会出现bug"><a href="#思路一循环次数过多，容易出现错误-对特殊的链表处理不当会出现bug" class="headerlink" title="思路一循环次数过多，容易出现错误,对特殊的链表处理不当会出现bug"></a>思路一循环次数过多，容易出现错误,对特殊的链表处理不当会出现bug</h2><h2 id="思路2："><a href="#思路2：" class="headerlink" title="思路2："></a>思路2：</h2><ol>
+<li>将链表依次保存到一个list集合中(集合编号0设置为头结点的指向);</li>
+<li>集合长度-n德都需要删除的节点的下标;</li>
+<li>根据下标找到前一个节点，将其指向删除节点所指向的节点;</li>
+</ol>
+<hr>
+<h2 id="思路二利用集合减少循环此次很好的保存每个节点"><a href="#思路二利用集合减少循环此次很好的保存每个节点" class="headerlink" title="思路二利用集合减少循环此次很好的保存每个节点"></a>思路二利用集合减少循环此次很好的保存每个节点</h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/06/LeetCode-removeNthFromEnd/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Spring错误记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
