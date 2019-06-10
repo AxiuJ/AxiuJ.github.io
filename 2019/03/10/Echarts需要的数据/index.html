@@ -15,18 +15,20 @@
 
 
 
-<meta name="description" content="Response to preflight request doesn’t pass access control check: No ‘Access-Control-Allow-Origin’ header is present on the requested resource跨域问题也不是第一次遇到了- -特意查了下为啥会有这个问题查到的资料显示是不同端口之间通信造成的不同源，同源策略">
+<meta name="description" content="记录下用于论文中使用需要实现的功能是Echarts折线图统计员工业务情况 N/S图 代码实现123456789101112131415161718192021222324public List&amp;lt;chartvo&amp;gt; getchartvo(List&amp;lt;Chartdata&amp;gt; chartdatas) &amp;#123;     List&amp;lt;chartvo&amp;gt; cs = new Arr">
 <meta name="keywords" content="随笔">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前后端分离跨域问题">
-<meta property="og:url" content="http://yoursite.com/2019/02/13/前后端分离跨域问题/index.html">
+<meta property="og:title" content="Echarts需要的数据">
+<meta property="og:url" content="http://yoursite.com/2019/03/10/Echarts需要的数据/index.html">
 <meta property="og:site_name" content="AxiuJ的博客">
-<meta property="og:description" content="Response to preflight request doesn’t pass access control check: No ‘Access-Control-Allow-Origin’ header is present on the requested resource跨域问题也不是第一次遇到了- -特意查了下为啥会有这个问题查到的资料显示是不同端口之间通信造成的不同源，同源策略">
+<meta property="og:description" content="记录下用于论文中使用需要实现的功能是Echarts折线图统计员工业务情况 N/S图 代码实现123456789101112131415161718192021222324public List&amp;lt;chartvo&amp;gt; getchartvo(List&amp;lt;Chartdata&amp;gt; chartdatas) &amp;#123;     List&amp;lt;chartvo&amp;gt; cs = new Arr">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-09T00:36:54.197Z">
+<meta property="og:image" content="https://imgchr.com/i/VycOr8">
+<meta property="og:updated_time" content="2019-06-10T06:21:37.418Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前后端分离跨域问题">
-<meta name="twitter:description" content="Response to preflight request doesn’t pass access control check: No ‘Access-Control-Allow-Origin’ header is present on the requested resource跨域问题也不是第一次遇到了- -特意查了下为啥会有这个问题查到的资料显示是不同端口之间通信造成的不同源，同源策略">
+<meta name="twitter:title" content="Echarts需要的数据">
+<meta name="twitter:description" content="记录下用于论文中使用需要实现的功能是Echarts折线图统计员工业务情况 N/S图 代码实现123456789101112131415161718192021222324public List&amp;lt;chartvo&amp;gt; getchartvo(List&amp;lt;Chartdata&amp;gt; chartdatas) &amp;#123;     List&amp;lt;chartvo&amp;gt; cs = new Arr">
+<meta name="twitter:image" content="https://imgchr.com/i/VycOr8">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -58,7 +60,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>前后端分离跨域问题 | AxiuJ的博客</title>
+<title>Echarts需要的数据 | AxiuJ的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -262,11 +264,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-前后端分离跨域问题" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Echarts需要的数据" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/02/13/前后端分离跨域问题/" class="article-date">
-      <time datetime="2019-02-13T00:31:43.000Z" itemprop="datePublished">2019-02-13</time>
+      <a href="/2019/03/10/Echarts需要的数据/" class="article-date">
+      <time datetime="2019-03-10T06:07:08.000Z" itemprop="datePublished">2019-03-10</time>
 </a>
 
 
@@ -281,7 +283,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      前后端分离跨域问题
+      Echarts需要的数据
     </h1>
   
 
@@ -302,44 +304,33 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="Response-to-preflight-request-doesn’t-pass-access-control-check-No-‘Access-Control-Allow-Origin’-header-is-present-on-the-requested-resource"><a href="#Response-to-preflight-request-doesn’t-pass-access-control-check-No-‘Access-Control-Allow-Origin’-header-is-present-on-the-requested-resource" class="headerlink" title="Response to preflight request doesn’t pass access control check: No ‘Access-Control-Allow-Origin’ header is present on the requested resource"></a>Response to preflight request doesn’t pass access control check: No ‘Access-Control-Allow-Origin’ header is present on the requested resource</h1><p>跨域问题也不是第一次遇到了- -特意查了下为啥会有这个问题<br>查到的资料显示是不同端口之间通信造成的不同源，<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy" target="_blank" rel="noopener">同源策略</a> </p>
-<p> 1.前台axios修改</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建axios实例</span></span>
-<span class="line"><span class="keyword">const</span> service = axios.create(&#123;</span>
-<span class="line">  baseURL: process.env.BASE_API, <span class="comment">// api的base_url</span></span>
-<span class="line">  timeout: <span class="number">5000</span>, <span class="comment">// 请求超时时间</span></span>
-<span class="line">  withCredentials: <span class="literal">true</span>,<span class="comment">//跨域</span></span>
-<span class="line">  headers: &#123;</span>
-<span class="line">    <span class="string">"Content-Type"</span>: <span class="string">"application/x-www-form-urlencoded"</span></span>
-<span class="line">  &#125;<span class="comment">//跨域</span></span>
-<span class="line">&#125;);</span>
-</pre></td></tr></table></figure>
-<p>2.后台zuul加个配置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span>
-<span class="line">    <span class="function"><span class="keyword">public</span> CorsFilter <span class="title">corsFilter</span><span class="params">()</span> </span>&#123;</span>
-<span class="line">        <span class="keyword">final</span> UrlBasedCorsConfigurationSource source = <span class="keyword">new</span> UrlBasedCorsConfigurationSource();</span>
-<span class="line">        <span class="keyword">final</span> CorsConfiguration config = <span class="keyword">new</span> CorsConfiguration();</span>
-<span class="line">        <span class="comment">// 允许cookies跨域</span></span>
-<span class="line">        config.setAllowCredentials(<span class="keyword">true</span>);</span>
-<span class="line">        <span class="comment">// #允许向该服务器提交请求的URI，*表示全部允许，在SpringMVC中，如果设成*，会自动转成当前请求头中的Origin</span></span>
-<span class="line">        config.addAllowedOrigin(<span class="string">"*"</span>);</span>
-<span class="line">        <span class="comment">// #允许访问的头信息,*表示全部</span></span>
-<span class="line">        config.addAllowedHeader(<span class="string">"*"</span>);</span>
-<span class="line">        <span class="comment">// 预检请求的缓存时间（秒），即在这个时间段里，对于相同的跨域请求不会再预检了</span></span>
-<span class="line">        config.setMaxAge(<span class="number">18000L</span>);</span>
-<span class="line">        <span class="comment">// 允许提交请求的方法，*表示全部允许</span></span>
-<span class="line">        config.addAllowedMethod(<span class="string">"OPTIONS"</span>);</span>
-<span class="line">        config.addAllowedMethod(<span class="string">"HEAD"</span>);</span>
-<span class="line">        <span class="comment">// 允许Get的请求方法</span></span>
-<span class="line">        config.addAllowedMethod(<span class="string">"GET"</span>);</span>
-<span class="line">        config.addAllowedMethod(<span class="string">"PUT"</span>);</span>
-<span class="line">        config.addAllowedMethod(<span class="string">"POST"</span>);</span>
-<span class="line">        config.addAllowedMethod(<span class="string">"DELETE"</span>);</span>
-<span class="line">        config.addAllowedMethod(<span class="string">"PATCH"</span>);</span>
-<span class="line">        source.registerCorsConfiguration(<span class="string">"/**"</span>, config);</span>
-<span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> CorsFilter(source);</span>
+        <h1 id="记录下用于论文中使用"><a href="#记录下用于论文中使用" class="headerlink" title="记录下用于论文中使用"></a>记录下用于论文中使用</h1><p>需要实现的功能是Echarts折线图统计员工业务情况</p>
+<p><em>N/S图</em><br><img src="https://imgchr.com/i/VycOr8" alt="img"></p>
+<p><em>代码实现</em><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;chartvo&gt; <span class="title">getchartvo</span><span class="params">(List&lt;Chartdata&gt; chartdatas)</span> </span>&#123;</span>
+<span class="line">    List&lt;chartvo&gt; cs = <span class="keyword">new</span> ArrayList&lt;&gt;();</span>
+<span class="line">    Set&lt;String&gt; s = <span class="keyword">new</span> HashSet&lt;&gt;();</span>
+<span class="line">    Iterator&lt;Chartdata&gt; iterator = chartdatas.iterator();</span>
+<span class="line">    </span>
+<span class="line">    <span class="keyword">while</span> (iterator.hasNext()) &#123;</span>
+<span class="line">        s.add(iterator.next().getStaffname());</span>
 <span class="line">    &#125;</span>
-</pre></td></tr></table></figure>
+<span class="line">    <span class="keyword">for</span> (String staffname : s) &#123;</span>
+<span class="line">        chartvo chartvo = <span class="keyword">new</span> chartvo();</span>
+<span class="line">        chartvo.setName(staffname);</span>
+<span class="line">        iterator = chartdatas.iterator();</span>
+<span class="line">        <span class="keyword">double</span>[] item = <span class="keyword">new</span> <span class="keyword">double</span>[<span class="number">31</span>];</span>
+<span class="line"></span>
+<span class="line">        <span class="keyword">while</span> (iterator.hasNext()) &#123;</span>
+<span class="line">            Chartdata dat = iterator.next();</span>
+<span class="line">            <span class="keyword">if</span> (staffname.equals(dat.getStaffname()) == <span class="keyword">true</span>) item[dat.getDataname()] = dat.getTotal();</span>
+<span class="line">        &#125;</span>
+<span class="line">        </span>
+<span class="line">        chartvo.setTotals(item);</span>
+<span class="line">        cs.add(chartvo);</span>
+<span class="line">    &#125;</span>
+<span class="line">    <span class="keyword">return</span> cs;</span>
+<span class="line">&#125;</span>
+</pre></td></tr></table></figure></p>
 
       
     </div>
@@ -348,13 +339,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/02/13/前后端分离跨域问题/">前后端分离跨域问题</a></p>
+        <p><span>本文标题:</span><a href="/2019/03/10/Echarts需要的数据/">Echarts需要的数据</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Axiu_J</a></p>
-        <p><span>发布时间:</span>2019-02-13, 08:31:43</p>
-        <p><span>最后更新:</span>2019-06-09, 08:36:54</p>
+        <p><span>发布时间:</span>2019-03-10, 14:07:08</p>
+        <p><span>最后更新:</span>2019-06-10, 14:21:37</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/02/13/前后端分离跨域问题/" title="前后端分离跨域问题">http://yoursite.com/2019/02/13/前后端分离跨域问题/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/02/13/前后端分离跨域问题/　　作者: Axiu_J" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/03/10/Echarts需要的数据/" title="Echarts需要的数据">http://yoursite.com/2019/03/10/Echarts需要的数据/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/03/10/Echarts需要的数据/　　作者: Axiu_J" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -367,15 +358,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/03/10/Echarts需要的数据/">
-                    Echarts需要的数据
+                <a href="/2019/05/29/Spring错误记录/">
+                    Spring错误记录
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/02/01/BindingException/">
-                    BindingException
+                <a href="/2019/02/13/前后端分离跨域问题/">
+                    前后端分离跨域问题
                 </a>
             </div>
         
@@ -387,7 +378,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Response-to-preflight-request-doesn’t-pass-access-control-check-No-‘Access-Control-Allow-Origin’-header-is-present-on-the-requested-resource"><span class="toc-number">1.</span> <span class="toc-text">Response to preflight request doesn’t pass access control check: No ‘Access-Control-Allow-Origin’ header is present on the requested resource</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#记录下用于论文中使用"><span class="toc-number">1.</span> <span class="toc-text">记录下用于论文中使用</span></a></li></ol>
         
     </div>
     <style>
@@ -423,7 +414,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"前后端分离跨域问题　| AxiuJ的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Echarts需要的数据　| AxiuJ的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -443,7 +434,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/03/10/Echarts需要的数据/" title="上一篇: Echarts需要的数据">
+            <a href="/2019/05/29/Spring错误记录/" title="上一篇: Spring错误记录">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -451,7 +442,7 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/02/01/BindingException/" title="下一篇: BindingException">
+            <a href="/2019/02/13/前后端分离跨域问题/" title="下一篇: 前后端分离跨域问题">
                 <i class="fa fa-angle-right"></i>
             </a>
         
