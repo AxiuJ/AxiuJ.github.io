@@ -14,19 +14,20 @@
 <meta name="author" content="Axiu_J">
 
 
+    
+    
 
-<meta name="description" content="翻转链表递归思路">
-<meta name="keywords" content="LeetCode">
-<meta property="og:type" content="article">
-<meta property="og:title" content="【LeetCode】reverseList">
-<meta property="og:url" content="http://yoursite.com/2019/06/06/【LeetCode】reverseList/index.html">
+
+<meta name="description" content="闽江学院15级学生,希望可以找到合适的工作- -">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AxiuJ的博客">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="AxiuJ的博客">
-<meta property="og:description" content="翻转链表递归思路">
+<meta property="og:description" content="闽江学院15级学生,希望可以找到合适的工作- -">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-06T17:22:31.032Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【LeetCode】reverseList">
-<meta name="twitter:description" content="翻转链表递归思路">
+<meta name="twitter:title" content="AxiuJ的博客">
+<meta name="twitter:description" content="闽江学院15级学生,希望可以找到合适的工作- -">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -54,11 +55,13 @@
 <link rel="stylesheet" href="/css/style.css">
 
 
+    <style> .article { opacity: 0;} </style>
+
 
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>【LeetCode】reverseList | AxiuJ的博客</title>
+<title>AxiuJ的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -67,8 +70,8 @@
     var yiliaConfig = {
         fancybox: true,
         animate: true,
-        isHome: false,
-        isPost: true,
+        isHome: true,
+        isPost: false,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -262,11 +265,13 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-【LeetCode】reverseList" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
+  
+    <article id="post-BindingException" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/06/06/【LeetCode】reverseList/" class="article-date">
-      <time datetime="2019-06-06T05:39:38.000Z" itemprop="datePublished">2019-06-06</time>
+      <a href="/2019/02/01/BindingException/" class="article-date">
+      <time datetime="2019-02-01T00:39:02.000Z" itemprop="datePublished">2019-02-01</time>
 </a>
 
 
@@ -280,145 +285,43 @@
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      【LeetCode】reverseList
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/01/BindingException/">BindingException</a>
     </h1>
   
 
       </header>
       
-      <div class="article-info article-info-post">
-        
-
-        
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
-    </div>
-
-        <div class="clearfix"></div>
-      </div>
-      
     
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="翻转链表"><a href="#翻转链表" class="headerlink" title="翻转链表"></a>翻转链表</h1><h2 id="递归思路"><a href="#递归思路" class="headerlink" title="递归思路"></a>递归思路</h2><a id="more"></a>
-<ol>
-<li>判断什么时候需要结束递归</li>
-</ol>
-<ul>
-<li>结束递归条件为 节点为空 or 节点所指向的节点为空</li>
-<li>将节点返回 在上个节点处将其设为新的头节点；</li>
-</ul>
-<ol start="2">
-<li>由于递归会从后向前返回结果，所以前一位节点的指针不变还会指向当前节点；</li>
-</ol>
-<ul>
-<li>a—&gt;b—&gt;c—&gt;d</li>
-<li>递归结束时放回 d 给 c 节点函数;</li>
-<li>c.next.next 就是 d 的指针 将他该为指向 c(即递归函数传入的 head 参数);</li>
-<li>a—&gt;b-&gt;c&lt;-d （c 为参数时执行结果而 d 的指针没变,从而 d 的执行不会影响）</li>
-<li>c 的指针改为指向 null;</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span>
-<span class="line">	<span class="keyword">if</span>(head==<span class="keyword">null</span> || head.next==<span class="keyword">null</span>)&#123;</span>
-<span class="line">		<span class="keyword">return</span> head;</span>
-<span class="line">	&#125;</span>
-<span class="line">	ListNode newnode = reverseList(head.next);</span>
-<span class="line">	head.next.next=head;</span>
-<span class="line">	head.next=<span class="keyword">null</span>;</span>
-<span class="line">	<span class="keyword">return</span> newnode;</span>
-<span class="line">   &#125;</span>
-</pre></td></tr></table></figure>
+        <p><strong>org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.axiuj.springcloud.providerduty.dao.</strong></p>
+<p>查看下面一行代码 错误为ms==null抛出 为未找到xml文件 查看是否配置或目录出错</p>
+<p>通过调试发现在抛出异常的位置上一行是进行xml文件判断的判断语句</p>
+<p>如果没有找到xml配置文件将会抛出异常；</p>
+<p>所以应该查看一下SpringBoot中yml配置中是不是写错了mybaits mapping的路径。</p>
 
       
     </div>
     
-  </div>
-  
-    
-    <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/06/06/【LeetCode】reverseList/">【LeetCode】reverseList</a></p>
-        <p><span>文章作者:</span><a href="/" title="回到主页">Axiu_J</a></p>
-        <p><span>发布时间:</span>2019-06-06, 13:39:38</p>
-        <p><span>最后更新:</span>2019-06-07, 01:22:31</p>
-        <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/06/06/【LeetCode】reverseList/" title="【LeetCode】reverseList">http://yoursite.com/2019/06/06/【LeetCode】reverseList/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/06/06/【LeetCode】reverseList/　　作者: Axiu_J" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
-            <script> var clipboard = new Clipboard('.copy-path'); </script>
-        </p>
-        <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
-        </p>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
     </div>
 
-
-
-    <nav id="article-nav">
-        
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/06/06/【随笔】分类/">
-                    【随笔】添加分类方法
-                </a>
-            </div>
-        
-        
-            <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/06/06/【LeetCode】removeNthFromEnd/">
-                    【LeetCode】removeNthFromEnd
-                </a>
-            </div>
-        
-    </nav>
-
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
   
 </article>
 
-    <div id="toc" class="toc-article">
-        <strong class="toc-title">文章目录</strong>
-        
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#翻转链表"><span class="toc-number">1.</span> <span class="toc-text">翻转链表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#递归思路"><span class="toc-number">1.1.</span> <span class="toc-text">递归思路</span></a></li></ol></li></ol>
-        
-    </div>
-    <style>
-        .left-col .switch-btn,
-        .left-col .switch-area {
-            display: none;
-        }
-        .toc-level-3 i,
-        .toc-level-3 ol {
-            display: none !important;
-        }
-    </style>
-
-    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
-
-    <script>
-        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
-    </script>
-
-
-
-    
-<div class="share">
-    
-        <div class="bdsharebuttonbox">
-            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
-            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
-            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
-            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
-            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
-            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
-        </div>
-        <script>
-            window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"【LeetCode】reverseList　| AxiuJ的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-        </script>
-    
-
-    
-</div>
 
 
 
@@ -426,35 +329,13 @@
 
 
 
-    
 
-
-
-
-    <div class="scroll" id="post-nav-button">
-        
-            <a href="/2019/06/06/【随笔】分类/" title="上一篇: 【随笔】添加分类方法">
-                <i class="fa fa-angle-left"></i>
-            </a>
-        
-
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-
-        
-            <a href="/2019/06/06/【LeetCode】removeNthFromEnd/" title="下一篇: 【LeetCode】removeNthFromEnd">
-                <i class="fa fa-angle-right"></i>
-            </a>
-        
-    </div>
-
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/12/12/druid多数据源配置/">druid多数据源配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/26/mybatisExample文件/">mybatisExample文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/22/security学习文档/">security学习文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/09/redis基本记录/">redis基本记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/06/【随笔】分类/">【随笔】添加分类方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/06/【LeetCode】reverseList/">【LeetCode】reverseList</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/06/【LeetCode】removeNthFromEnd/">【LeetCode】removeNthFromEnd</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/29/Spring错误记录/">Spring错误记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/10/Echarts需要的数据/">Echarts需要的数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/13/前后端分离跨域问题/">前后端分离跨域问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/01/BindingException/">BindingException</a></li></ul>
-
-
-
-
-    <script>
-        
-    </script>
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
+  
 </div>
       <footer id="footer">
     <div class="outer">

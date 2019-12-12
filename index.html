@@ -267,6 +267,213 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="springboot-druid多数据源配置" class="article article-type-springboot" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/12/12/druid多数据源配置/" class="article-date">
+      <time datetime="2019-12-12T01:07:30.000Z" itemprop="datePublished">2019-12-12</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/12/druid多数据源配置/">druid多数据源配置</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="同一ip的数据库-可以分配表的读取权限-即可"><a href="#同一ip的数据库-可以分配表的读取权限-即可" class="headerlink" title="同一ip的数据库 可以分配表的读取权限 即可"></a>同一ip的数据库 可以分配表的读取权限 即可</h2><h2 id="AOP实现数据源切换；"><a href="#AOP实现数据源切换；" class="headerlink" title="AOP实现数据源切换；"></a>AOP实现数据源切换；</h2><pre><code>在单体应用中切换数据源。 
+</code></pre><p><a href="https://blog.csdn.net/zl_momomo/article/details/82851134" target="_blank" rel="noopener">表明出处</a><br>
+          
+      
+    </p></div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2019/12/12/druid多数据源配置/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-mybatisExample文件" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/11/26/mybatisExample文件/" class="article-date">
+      <time datetime="2019-11-26T07:42:21.000Z" itemprop="datePublished">2019-11-26</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/26/mybatisExample文件/">mybatisExample文件</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="Example文件，真香！"><a href="#Example文件，真香！" class="headerlink" title="Example文件，真香！"></a>Example文件，真香！</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><pre><code>mybatis反向生成了了Examale文件,第一反应就是这东西有啥用，
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-security学习文档" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/11/22/security学习文档/" class="article-date">
+      <time datetime="2019-11-22T03:43:56.000Z" itemprop="datePublished">2019-11-22</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/22/security学习文档/">security学习文档</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="security学习文档"><a href="#security学习文档" class="headerlink" title="security学习文档"></a>security学习文档</h1><h2 id="WebSecurityConfigurerAdapter"><a href="#WebSecurityConfigurerAdapter" class="headerlink" title="WebSecurityConfigurerAdapter"></a>WebSecurityConfigurerAdapter</h2><ul>
+<li>对于spring security来说 WebSecurityConfigurerAdapter是一个配置的基础</li>
+<li>一般都是继承这个类 进行权限的配置</li>
+<li>继承后重写configure方法 进行权限配置</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span>
+<span class="line"><span class="meta">@Bean</span></span>
+<span class="line"><span class="function"><span class="keyword">public</span> UserDetailsService <span class="title">userDetailsService</span><span class="params">()</span> </span>&#123;</span>
+<span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> UserDetailsServiceImpl();</span>
+<span class="line">&#125;</span>
+<span class="line"><span class="meta">@Override</span></span>
+<span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(AuthenticationManagerBuilder auth)</span> <span class="keyword">throws</span> Exception </span>&#123;</span>
+<span class="line">    auth.userDetailsService(userDetailsService());</span>
+<span class="line">&#125;</span>
+</pre></td></tr></table></figure>
+<ul>
+<li><p>以上代码是配置 获取登入人的数据库信息 分装成UserDetails对象 </p>
+</li>
+<li><p>登入验证</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">http</span>
+<span class="line">               .authorizeRequests()</span>
+<span class="line">                       .withObjectPostProcessor(<span class="keyword">new</span> ObjectPostProcessor&lt;FilterSecurityInterceptor&gt;() &#123;</span>
+<span class="line">                           <span class="keyword">public</span> &lt;O extends FilterSecurityInterceptor&gt; <span class="function">O <span class="title">postProcess</span><span class="params">(O fsi)</span> </span>&#123;</span>
+<span class="line">                               fsi.setSecurityMetadataSource(urlFilterInvocationSecurityMetadataSource);</span>
+<span class="line">                               fsi.setAccessDecisionManager(urlAccessDecisionManager);</span>
+<span class="line">                               <span class="keyword">return</span> fsi;</span>
+<span class="line">                           &#125;</span>
+<span class="line">                       &#125;)</span>
+</pre></td></tr></table></figure>
+<ul>
+<li>以上代码中 withObjectPostProcessor 代码 配置的setSecurityMetadataSource会返回api需要的角色（自己实现） setAccessDecisionManager 判断是否用户有没有角色（自己实现）</li>
+<li>withObjectPostProcessor 权限控制配置 </li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-redis基本记录" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -726,70 +933,10 @@
 
 
   
-    <article id="post-BindingException" class="article article-type-post" itemscope itemprop="blogPost">
   
-    <div class="article-meta">
-      <a href="/2019/02/01/BindingException/" class="article-date">
-      <time datetime="2019-02-01T00:39:02.000Z" itemprop="datePublished">2019-02-01</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/01/BindingException/">BindingException</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p><strong>org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.axiuj.springcloud.providerduty.dao.</strong></p>
-<p>查看下面一行代码 错误为ms==null抛出 为未找到xml文件 查看是否配置或目录出错</p>
-<p>通过调试发现在抛出异常的位置上一行是进行xml文件判断的判断语句</p>
-<p>如果没有找到xml配置文件将会抛出异常；</p>
-<p>所以应该查看一下SpringBoot中yml配置中是不是写错了mybaits mapping的路径。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 </div>
       <footer id="footer">
