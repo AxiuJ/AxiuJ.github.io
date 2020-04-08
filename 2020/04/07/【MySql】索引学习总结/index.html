@@ -15,18 +15,23 @@
 
 
 
-<meta name="description" content="org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.axiuj.springcloud.providerduty.dao. 查看下面一行代码 错误为ms==null抛出 为未找到xml文件 查看是否配置或目录出错 通过调试发现在抛出异常的位置上一行是进行xml文件判断的判断语句 如">
-<meta name="keywords" content="随笔">
+<meta name="description" content="索引索引分为聚合索引与非聚合索引 聚合索引（数据与索引在一个文件下）innodb存储引擎所用的就是聚合索引   innodb在磁盘中的存储文件  ifm文件为表结构信息存储文件，ibd为数据以及索引存储文件。 非聚合索引（数据与索引在不同文件下）myisam存储引擎所使用的就是非聚合索引  myisam在磁盘中的存储文件  ifm为表结构信息存储文件,myd为数据文件,myi为索引文件。 索引的存">
+<meta name="keywords" content="学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="BindingException">
-<meta property="og:url" content="http://yoursite.com/2019/02/01/BindingException/index.html">
+<meta property="og:title" content="【MySql】索引学习总结">
+<meta property="og:url" content="http://yoursite.com/2020/04/07/【MySql】索引学习总结/index.html">
 <meta property="og:site_name" content="AxiuJ的博客">
-<meta property="og:description" content="org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.axiuj.springcloud.providerduty.dao. 查看下面一行代码 错误为ms==null抛出 为未找到xml文件 查看是否配置或目录出错 通过调试发现在抛出异常的位置上一行是进行xml文件判断的判断语句 如">
+<meta property="og:description" content="索引索引分为聚合索引与非聚合索引 聚合索引（数据与索引在一个文件下）innodb存储引擎所用的就是聚合索引   innodb在磁盘中的存储文件  ifm文件为表结构信息存储文件，ibd为数据以及索引存储文件。 非聚合索引（数据与索引在不同文件下）myisam存储引擎所使用的就是非聚合索引  myisam在磁盘中的存储文件  ifm为表结构信息存储文件,myd为数据文件,myi为索引文件。 索引的存">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-09T00:41:50.322Z">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/07/G6xGKe.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/07/G6znsg.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/07/GcP9UJ.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/07/GcCzbF.jpg">
+<meta property="og:updated_time" content="2020-04-07T02:02:54.747Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BindingException">
-<meta name="twitter:description" content="org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.axiuj.springcloud.providerduty.dao. 查看下面一行代码 错误为ms==null抛出 为未找到xml文件 查看是否配置或目录出错 通过调试发现在抛出异常的位置上一行是进行xml文件判断的判断语句 如">
+<meta name="twitter:title" content="【MySql】索引学习总结">
+<meta name="twitter:description" content="索引索引分为聚合索引与非聚合索引 聚合索引（数据与索引在一个文件下）innodb存储引擎所用的就是聚合索引   innodb在磁盘中的存储文件  ifm文件为表结构信息存储文件，ibd为数据以及索引存储文件。 非聚合索引（数据与索引在不同文件下）myisam存储引擎所使用的就是非聚合索引  myisam在磁盘中的存储文件  ifm为表结构信息存储文件,myd为数据文件,myi为索引文件。 索引的存">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/04/07/G6xGKe.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -58,7 +63,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>BindingException | AxiuJ的博客</title>
+<title>【MySql】索引学习总结 | AxiuJ的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -262,11 +267,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-BindingException" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-【MySql】索引学习总结" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/02/01/BindingException/" class="article-date">
-      <time datetime="2019-02-01T00:39:02.000Z" itemprop="datePublished">2019-02-01</time>
+      <a href="/2020/04/07/【MySql】索引学习总结/" class="article-date">
+      <time datetime="2020-04-07T01:09:46.000Z" itemprop="datePublished">2020-04-07</time>
 </a>
 
 
@@ -281,7 +286,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      BindingException
+      【MySql】索引学习总结
     </h1>
   
 
@@ -292,7 +297,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -302,12 +307,26 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><strong>org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.axiuj.springcloud.providerduty.dao.</strong></p>
-<p>查看下面一行代码 错误为ms==null抛出 为未找到xml文件 查看是否配置或目录出错</p>
-<p>通过调试发现在抛出异常的位置上一行是进行xml文件判断的判断语句</p>
-<p>如果没有找到xml配置文件将会抛出异常；</p>
-<p>所以应该查看一下SpringBoot中yml配置中是不是写错了mybaits mapping的路径。</p>
+        <h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><pre><code>索引分为聚合索引与非聚合索引
+</code></pre><h2 id="聚合索引（数据与索引在一个文件下）"><a href="#聚合索引（数据与索引在一个文件下）" class="headerlink" title="聚合索引（数据与索引在一个文件下）"></a>聚合索引（数据与索引在一个文件下）</h2><pre><code>innodb存储引擎所用的就是聚合索引 
+</code></pre><p><img src="https://s1.ax1x.com/2020/04/07/G6xGKe.png" alt="innodb在磁盘中的存储文件"></p>
+<pre><code>innodb在磁盘中的存储文件
 
+ifm文件为表结构信息存储文件，ibd为数据以及索引存储文件。
+</code></pre><h2 id="非聚合索引（数据与索引在不同文件下）"><a href="#非聚合索引（数据与索引在不同文件下）" class="headerlink" title="非聚合索引（数据与索引在不同文件下）"></a>非聚合索引（数据与索引在不同文件下）</h2><pre><code>myisam存储引擎所使用的就是非聚合索引
+</code></pre><p><img src="https://s1.ax1x.com/2020/04/07/G6znsg.png" alt="myisam在磁盘中的存储文件"></p>
+<pre><code>myisam在磁盘中的存储文件
+
+ifm为表结构信息存储文件,myd为数据文件,myi为索引文件。
+</code></pre><h1 id="索引的存储结构"><a href="#索引的存储结构" class="headerlink" title="索引的存储结构"></a>索引的存储结构</h1><pre><code>索引的存储结构可以分为btree与hash两种。
+</code></pre><h2 id="btree（b树）"><a href="#btree（b树）" class="headerlink" title="btree（b树）"></a>btree（b树）</h2><pre><code>在mysql中的b树，与正常的b树存在区别，以下称为b+树，它在b树的基础上，将数据或数据的磁盘位置挂接到叶子结点上，其他节点不存数据只存索引信息，并将父节点的索引合并到自身。
+</code></pre><p><img src="https://s1.ax1x.com/2020/04/07/GcP9UJ.jpg" alt="挂在数据到叶子结点（聚合）"></p>
+<p>挂在数据到叶子结点（聚合）</p>
+<p><img src="https://s1.ax1x.com/2020/04/07/GcCzbF.jpg" alt="挂在磁盘位置到叶子结点（非聚合）"></p>
+<p>挂在磁盘位置到叶子结点（非聚合）</p>
+<h2 id="hash-一般不使用"><a href="#hash-一般不使用" class="headerlink" title="hash(一般不使用)"></a>hash(一般不使用)</h2><pre><code>hash索引对范围查找会进行全表查询，效率低。
+</code></pre><h1 id="最左原则"><a href="#最左原则" class="headerlink" title="最左原则"></a>最左原则</h1><pre><code>在设计索引的时候如何以多列作为多列索引时 如果以（a，b，c）左为索引，那么会在磁盘中创建（a）（a，b）（a，b，c）三个索引，这样在查询中庸b，c为查询条件就不会用到索引。而进入慢查询。 WHERE B=1 AND C= 1 慢查询
+</code></pre>
       
     </div>
     
@@ -315,13 +334,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/02/01/BindingException/">BindingException</a></p>
+        <p><span>本文标题:</span><a href="/2020/04/07/【MySql】索引学习总结/">【MySql】索引学习总结</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Axiu_J</a></p>
-        <p><span>发布时间:</span>2019-02-01, 08:39:02</p>
-        <p><span>最后更新:</span>2019-06-09, 08:41:50</p>
+        <p><span>发布时间:</span>2020-04-07, 09:09:46</p>
+        <p><span>最后更新:</span>2020-04-07, 10:02:54</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/02/01/BindingException/" title="BindingException">http://yoursite.com/2019/02/01/BindingException/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/02/01/BindingException/　　作者: Axiu_J" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2020/04/07/【MySql】索引学习总结/" title="【MySql】索引学习总结">http://yoursite.com/2020/04/07/【MySql】索引学习总结/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2020/04/07/【MySql】索引学习总结/　　作者: Axiu_J" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -334,11 +353,17 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/02/13/前后端分离跨域问题/">
-                    前后端分离跨域问题
+                <a href="/2020/04/08/【jdk与jvm】jdk与jvm还有回收机制的学习爱总结/">
+                    【jdk与jvm】jdk与jvm还有回收机制的学习爱总结
                 </a>
             </div>
         
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2020/04/01/【代码】利用Hutool生成execl与zip/">
+                    【代码】利用Hutool生成execl与zip
+                </a>
+            </div>
         
     </nav>
 
@@ -348,7 +373,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#索引"><span class="toc-number">1.</span> <span class="toc-text">索引</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#聚合索引（数据与索引在一个文件下）"><span class="toc-number">1.1.</span> <span class="toc-text">聚合索引（数据与索引在一个文件下）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#非聚合索引（数据与索引在不同文件下）"><span class="toc-number">1.2.</span> <span class="toc-text">非聚合索引（数据与索引在不同文件下）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#索引的存储结构"><span class="toc-number">2.</span> <span class="toc-text">索引的存储结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#btree（b树）"><span class="toc-number">2.1.</span> <span class="toc-text">btree（b树）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hash-一般不使用"><span class="toc-number">2.2.</span> <span class="toc-text">hash(一般不使用)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#最左原则"><span class="toc-number">3.</span> <span class="toc-text">最左原则</span></a></li></ol>
         
     </div>
     <style>
@@ -384,7 +409,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"BindingException　| AxiuJ的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"【MySql】索引学习总结　| AxiuJ的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -404,7 +429,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/02/13/前后端分离跨域问题/" title="上一篇: 前后端分离跨域问题">
+            <a href="/2020/04/08/【jdk与jvm】jdk与jvm还有回收机制的学习爱总结/" title="上一篇: 【jdk与jvm】jdk与jvm还有回收机制的学习爱总结">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -412,7 +437,9 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2020/04/01/【代码】利用Hutool生成execl与zip/" title="下一篇: 【代码】利用Hutool生成execl与zip">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
 

@@ -188,7 +188,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
                     </div>
                 </section>
                 
@@ -266,6 +266,610 @@
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-【jdk与jvm】jdk与jvm还有回收机制的学习爱总结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/04/08/【jdk与jvm】jdk与jvm还有回收机制的学习爱总结/" class="article-date">
+      <time datetime="2020-04-08T07:05:57.000Z" itemprop="datePublished">2020-04-08</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/08/【jdk与jvm】jdk与jvm还有回收机制的学习爱总结/">【jdk与jvm】jdk与jvm还有回收机制的学习爱总结</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="jdk的总结"><a href="#jdk的总结" class="headerlink" title="jdk的总结"></a>jdk的总结</h1><pre><code>jdk包含jre；jre包含jvm虚拟机
+
+jdk包括开发常用到的一些工具如 javac 命令
+
+jre感觉像一些规范或者说sdk一类的东西，
+
+jvm虚拟机具体在下面
+</code></pre><h1 id="jvm虚拟机"><a href="#jvm虚拟机" class="headerlink" title="jvm虚拟机"></a>jvm虚拟机</h1><pre><code>不同系统安装的jvm虚拟机是不一样的，但其架构是一样的都包含 内存模块 与 非内存模块
+
+内存模块:运行时的数据存储区域 可以分为（堆 栈 本地方法区 方法区(元空间) 程序计数器 ）
+
+非内存模块:类装载子系统 字节码执行引擎 
+</code></pre><h1 id="一切从javac之后说起"><a href="#一切从javac之后说起" class="headerlink" title="一切从javac之后说起"></a>一切从javac之后说起</h1><h2 id="1-类装载子系统"><a href="#1-类装载子系统" class="headerlink" title="1. 类装载子系统"></a>1. 类装载子系统</h2><pre><code>类装载子系统 分为两部分 一部分为自己实现的（自定义类装载器） 一部分为java虚拟机自己实现的（启动类装载器），why？好像是有过最大bug来着- -;
+
+所以装载器会负责 找到并验证.class文件进行装载。之后为变量分配空间。（扔在堆区- -）而类信息都会给扔在方法区(元空间)。
+</code></pre><h2 id="2-栈"><a href="#2-栈" class="headerlink" title="2. 栈"></a>2. 栈</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(Strig[] array)</span></span>&#123;</span>
+<span class="line">    System.out.println(<span class="string">"1"</span>);</span>
+<span class="line">    <span class="keyword">this</span>.sum();</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sum</span><span class="params">()</span></span>&#123;</span>
+<span class="line">    <span class="keyword">int</span> a = <span class="number">1</span>;</span>
+<span class="line">    <span class="keyword">int</span> b = <span class="number">2</span>;</span>
+<span class="line">    <span class="keyword">int</span> c = a + b;</span>
+<span class="line">&#125;</span>
+</pre></td></tr></table></figure>
+<pre><code>栈，先进后出。程序执行线将main线程压栈执行到调用其他方法的时候 将sum线程压入栈 这样就可以了sum线程就在main线程上方需要先执sum线程。
+
+每个线程在栈中的空间称为（栈帧），ps帧不是视频中的概念吗，好像也挺形象的。
+
+在每个栈帧中可以细分为几个块（ 局部变量区 操作数栈 动态链接 方法出口 ）
+</code></pre><h3 id="2-1-栈帧（-局部变量区-操作数栈-动态链接-方法出口-）"><a href="#2-1-栈帧（-局部变量区-操作数栈-动态链接-方法出口-）" class="headerlink" title="2.1 栈帧（ 局部变量区 操作数栈 动态链接 方法出口 ）"></a>2.1 栈帧（ 局部变量区 操作数栈 动态链接 方法出口 ）</h3><pre><code>线程在会将局部变量区的变量取出放入操作数栈中，也不一定会放入变量，也会放入操作数。进行运算。
+
+执行结束后这一栈帧就会出栈 继续执行main线程
+</code></pre><h2 id="3-元空间"><a href="#3-元空间" class="headerlink" title="3 元空间"></a>3 元空间</h2><pre><code>1.8之前叫永久态 以后称为元空间 
+
+常量 静态变量 类信息 方法信息 会放在这里（反射？）
+</code></pre><h2 id="4-本地方法区"><a href="#4-本地方法区" class="headerlink" title="4 本地方法区"></a>4 本地方法区</h2><pre><code>调用其他语言编写的方法就是在本地方法区，c语言，技术发展慢慢不用了。
+</code></pre><h1 id="字节码执行引擎"><a href="#字节码执行引擎" class="headerlink" title="字节码执行引擎"></a>字节码执行引擎</h1><pre><code>主要负责修改程序计数器中的数值
+
+以及执行.class文件
+</code></pre><h1 id="各个区的大小分配"><a href="#各个区的大小分配" class="headerlink" title="各个区的大小分配"></a>各个区的大小分配</h1><pre><code>堆内存可以分为（Eden区 Survivor区 Old区）
+
+在这几个区中Old最大占用整个堆内存的2/3;
+
+Eden 与Survivor 占 1/3;
+
+Eden 占1/3的百分之80;
+
+Survivor 占1/3的百分之20;
+
+Survivor 平方为 Survivor0 与 Survivor1 两个区
+</code></pre><h1 id="对象的去与留"><a href="#对象的去与留" class="headerlink" title="对象的去与留"></a>对象的去与留</h1><pre><code>新new的对象会在Eden区 
+
+Eden区第一次满时 会进行一次小规模的垃圾清理minor gc;清理未被引用的对象（垃圾对象）。被引用的对象(非垃圾对象)会被移动到Survivor0区。引用标记+1。
+
+第二次满的时候 会在执行一次minor gc 与第一次不同这一次会连带 Survivor0区一起扫描。清理垃圾，非垃圾对象 标记+1 移动到Survivor1区。
+
+就这样非垃圾对象会在两个区中来回跳转，垃圾对象会被清理，(ps 筛子- -) 在标记到15的时候，移动到Old区。 
+
+当一个对象移入Survivor0或Survivor1区时，但是其内存大小大于Survivor0或Survivor1的百分之50，那么会直接移入Old区。
+
+当Old满了后会执行full gc 全堆垃圾清理。
+</code></pre><h2 id="minor-gc-与full-gc"><a href="#minor-gc-与full-gc" class="headerlink" title="minor gc 与full gc"></a>minor gc 与full gc</h2><pre><code>这两个操作都是字节码执行引擎来执行的 区别在于程序暂停时间（STW） minor gc 程序暂停时间少，基本感觉不到 full gc 程序暂停时间多 优化中应该尽量减少full gc的执行次数 
+</code></pre><h2 id="简单的优化"><a href="#简单的优化" class="headerlink" title="简单的优化"></a>简单的优化</h2><pre><code>设置虚拟机-Xmn2048M 参数 设置Eden区为2g 这样Survivor的内存大小就会变大，减少因为大于百分之50的情况而造成的Old区短时间被塞满。
+</code></pre><p><a href="https://blog.csdn.net/qq_41970025/article/details/105289273?fps=1&amp;locationNum=2" target="_blank" rel="noopener">常考的csdn博客</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=416976590&amp;idx=1&amp;sn=22823ada76d8cfd26a43e8d3a7b7a60e&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">CLASS类的一生</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=416915373&amp;idx=1&amp;sn=f80a13b099237534a3ef777d511d831a&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">线程</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-【MySql】索引学习总结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/04/07/【MySql】索引学习总结/" class="article-date">
+      <time datetime="2020-04-07T01:09:46.000Z" itemprop="datePublished">2020-04-07</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/07/【MySql】索引学习总结/">【MySql】索引学习总结</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><pre><code>索引分为聚合索引与非聚合索引
+</code></pre><h2 id="聚合索引（数据与索引在一个文件下）"><a href="#聚合索引（数据与索引在一个文件下）" class="headerlink" title="聚合索引（数据与索引在一个文件下）"></a>聚合索引（数据与索引在一个文件下）</h2><pre><code>innodb存储引擎所用的就是聚合索引 
+</code></pre><p><img src="https://s1.ax1x.com/2020/04/07/G6xGKe.png" alt="innodb在磁盘中的存储文件"></p>
+<pre><code>innodb在磁盘中的存储文件
+
+ifm文件为表结构信息存储文件，ibd为数据以及索引存储文件。
+</code></pre><h2 id="非聚合索引（数据与索引在不同文件下）"><a href="#非聚合索引（数据与索引在不同文件下）" class="headerlink" title="非聚合索引（数据与索引在不同文件下）"></a>非聚合索引（数据与索引在不同文件下）</h2><pre><code>myisam存储引擎所使用的就是非聚合索引
+</code></pre><p><img src="https://s1.ax1x.com/2020/04/07/G6znsg.png" alt="myisam在磁盘中的存储文件"></p>
+<pre><code>myisam在磁盘中的存储文件
+
+ifm为表结构信息存储文件,myd为数据文件,myi为索引文件。
+</code></pre><h1 id="索引的存储结构"><a href="#索引的存储结构" class="headerlink" title="索引的存储结构"></a>索引的存储结构</h1><pre><code>索引的存储结构可以分为btree与hash两种。
+</code></pre><h2 id="btree（b树）"><a href="#btree（b树）" class="headerlink" title="btree（b树）"></a>btree（b树）</h2><pre><code>在mysql中的b树，与正常的b树存在区别，以下称为b+树，它在b树的基础上，将数据或数据的磁盘位置挂接到叶子结点上，其他节点不存数据只存索引信息，并将父节点的索引合并到自身。
+</code></pre><p><img src="https://s1.ax1x.com/2020/04/07/GcP9UJ.jpg" alt="挂在数据到叶子结点（聚合）"></p>
+<p>挂在数据到叶子结点（聚合）</p>
+<p><img src="https://s1.ax1x.com/2020/04/07/GcCzbF.jpg" alt="挂在磁盘位置到叶子结点（非聚合）"></p>
+<p>挂在磁盘位置到叶子结点（非聚合）</p>
+<h2 id="hash-一般不使用"><a href="#hash-一般不使用" class="headerlink" title="hash(一般不使用)"></a>hash(一般不使用)</h2><pre><code>hash索引对范围查找会进行全表查询，效率低。
+</code></pre><h1 id="最左原则"><a href="#最左原则" class="headerlink" title="最左原则"></a>最左原则</h1><pre><code>在设计索引的时候如何以多列作为多列索引时 如果以（a，b，c）左为索引，那么会在磁盘中创建（a）（a，b）（a，b，c）三个索引，这样在查询中庸b，c为查询条件就不会用到索引。而进入慢查询。 WHERE B=1 AND C= 1 慢查询
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-【代码】利用Hutool生成execl与zip" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/04/01/【代码】利用Hutool生成execl与zip/" class="article-date">
+      <time datetime="2020-04-01T09:52:07.000Z" itemprop="datePublished">2020-04-01</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/01/【代码】利用Hutool生成execl与zip/">【代码】利用Hutool生成execl与zip</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="生成execl"><a href="#生成execl" class="headerlink" title="生成execl"></a>生成execl</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//指定xls位置</span></span>
+<span class="line">File file = <span class="keyword">new</span> File(<span class="string">"D:\table\表.xls"</span>);</span>
+<span class="line">ExcelWriter writer = ExcelUtil.getWriter(file);</span>
+<span class="line"><span class="comment">//datalist为需要写入的数据 List 数据库中查出可以用List&lt;Map&lt;&gt;&gt; 接收并用别名使写xls时表头为中文</span></span>
+<span class="line">writer.write(dataList);</span>
+<span class="line"><span class="comment">//设置个列宽度</span></span>
+<span class="line">writer.setColumnWidth(<span class="number">0</span>, <span class="number">10</span>)</span>
+<span class="line">        .setColumnWidth(<span class="number">1</span>, <span class="number">10</span>)</span>
+<span class="line">        .setColumnWidth(<span class="number">2</span>, <span class="number">36</span>)</span>
+<span class="line">        .setColumnWidth(<span class="number">3</span>, <span class="number">18</span>)</span>
+<span class="line">        .setColumnWidth(<span class="number">4</span>, <span class="number">10</span>)</span>
+<span class="line">        .setColumnWidth(<span class="number">5</span>, <span class="number">10</span>);</span>
+<span class="line"><span class="comment">//写出</span></span>
+<span class="line">writer.flush();</span>
+</pre></td></tr></table></figure>
+<p><a href="https://apidoc.gitee.com/loolly/hutool/cn/hutool/poi/excel/ExcelWriter.html" target="_blank" rel="noopener">附Hutool-ExcelWriter Api文档</a> </p>
+<h1 id="生成zip压缩包"><a href="#生成zip压缩包" class="headerlink" title="生成zip压缩包"></a>生成zip压缩包</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//path为需要打包的路径 打包后压缩文件为此目录的父级目录</span></span>
+<span class="line"><span class="comment">//path="D:\table\word" 打包后为D:\table\word.zip</span></span>
+<span class="line">ZipUtil.zip(path);</span>
+</pre></td></tr></table></figure>
+<p><a href="https://www.hutool.cn/docs/#/core/%E5%B7%A5%E5%85%B7%E7%B1%BB/%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7-ZipUtil" target="_blank" rel="noopener">附Hutool-ExcelZipUtil Api文档</a> </p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-【orcl】数据库安装教程11g" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/03/17/【orcl】数据库安装教程11g/" class="article-date">
+      <time datetime="2020-03-17T01:58:32.000Z" itemprop="datePublished">2020-03-17</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/17/【orcl】数据库安装教程11g/">【orcl】数据库安装教程11g</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="Oracle-服务端安装（11-2-0-4）F-orcl数据库-11gR2-11-2-0-4"><a href="#Oracle-服务端安装（11-2-0-4）F-orcl数据库-11gR2-11-2-0-4" class="headerlink" title="Oracle 服务端安装（11.2.0.4）F:\orcl数据库\11gR2 11.2.0.4"></a>Oracle 服务端安装（11.2.0.4）F:\orcl数据库\11gR2 11.2.0.4</h1><ol>
+<li>解压<br>选中两个压缩包同时解压，解压后会出现database文件夹。</li>
+</ol>
+<p><img src="https://s1.ax1x.com/2020/03/17/8tqTKO.png" alt="image"></p>
+<p><img src="https://s1.ax1x.com/2020/03/17/8tq48x.png" alt="image"></p>
+<ol start="2">
+<li>管理员身份运行<br>以管理员身份运行database目录下的setup.exe。目的是防止安装过程中，因为权限不够导致安装失败。</li>
+</ol>
+<p><img src="https://s1.ax1x.com/2020/03/17/8tq526.png" alt="image"></p>
+<ol start="3">
+<li>不接收安装更新</li>
+</ol>
+<p><img src="https://s1.ax1x.com/2020/03/17/8tqHqe.png" alt="image"></p>
+<p><img src="https://s1.ax1x.com/2020/03/17/8tqqVH.png" alt="image"></p>
+<ol start="4">
+<li>跳过软件更新‘<br>点击下一步时，如果提示“ins-08109 ClientSupportedOsCheck”错误，说明安装程序所在路径有问题，存在不符合规范的字符，如#等。</li>
+</ol>
+<p><img src="https://s1.ax1x.com/2020/03/17/8tqLad.png" alt="image"></p>
+<ol start="5">
+<li>选择“创建和配置数据库”</li>
+</ol>
+<p><img src="https://s1.ax1x.com/2020/03/17/8tqOIA.png" alt="image"></p>
+<ol start="6">
+<li>选择安装类型（个人-桌面类，服务器-服务器类）<br>桌面类：适用于台式机和笔记本。它包含一个最小数据库和最低的配置需求。<br>服务器类：适用于服务器。例如，它会向您提供数据中心和用于支持企业级的应用程序。如果您需要使用高级配置选项，请选择此安装类型。<br>在桌面类中，只有基本选择项。<br>在服务器类，可以选择标准安装（仅让您做基本选择）或高级安装。<br>在桌面类或典型安装中，Oracle数据库将自动安装示例库。</li>
+</ol>
+<p><img src="https://s1.ax1x.com/2020/03/17/8tqjPI.png" alt="image"></p>
+<ol start="7">
+<li>安装路径、字符集等设置<br>字符集：ZHS16GBK，中文字符集，存储中文和英文字符，一个英文一个字节，一个中文两个字节<br>字符集：AL32UTF8，国际字符集，存储中文、英文、日文等字符，一个英文一个字节，一个中文三个字节</li>
+</ol>
+<p><img src="https://s1.ax1x.com/2020/03/17/8tqvGt.png" alt="image"></p>
+<p><img src="https://s1.ax1x.com/2020/03/17/8tqxRP.png" alt="image"></p>
+<ol start="8">
+<li>先决条件检查</li>
+</ol>
+<p><img src="https://s1.ax1x.com/2020/03/17/8tqzxf.png" alt="image"></p>
+<p><img src="https://s1.ax1x.com/2020/03/17/8tLpM8.png" alt="image"></p>
+<ol start="9">
+<li>开始安装</li>
+</ol>
+<p><img src="https://s1.ax1x.com/2020/03/17/8tL9sS.png" alt="image"></p>
+<p><img src="https://s1.ax1x.com/2020/03/17/8tLCqg.png" alt="image"></p>
+<ol start="10">
+<li>创建数据库</li>
+</ol>
+<p><img src="https://s1.ax1x.com/2020/03/17/8tLEin.png" alt="image"></p>
+<ol start="11">
+<li>安装完成</li>
+</ol>
+<p><img src="https://s1.ax1x.com/2020/03/17/8tLVGq.png" alt="image"></p>
+<ol start="12">
+<li>相关的系统服务<br>控制面板——管理工具——服务<br>以下解释参考至网络<br>Oracle ORCL VSS Writer Service：Oracle卷映射拷贝写入服务，VSS(Volume Shadow Copy Service)能够让存储基础设备(比如磁盘，阵列等)创建高保真的时间点映像，即映射拷贝(shadow copy)。它可以在多卷或者单个卷上创建映射拷贝，同时不会影响到系统的系统能。(非必须启动)<br>补充：可以用来备份和还原数据库。<br>OracleDBConsoleorcl：Oracle数据库控制台服务，orcl是Oracle的实例标识，默认的实例为orcl。在运行Enterprise Manager(企业管理器OEM)的时候，需要启动这个服务。(非必须启动)<br>补充：如果需要用到WEB管理端（<img src="https://localhost:1158/em），则需要启动。
+OracleJobSchedulerORCL：Oracle作业调度(定时器" alt="image">服务，ORCL是Oracle实例标识。(非必须启动)<br>OracleMTSRecoveryService：服务端控制。该服务允许数据库充当一个微软事务服务器MTS、COM/COM+对象和分布式环境下的事务的资源管理器。(非必须启动)</li>
+</ol>
+<p>OracleOraDb11g_home1ClrAgent：Oracle数据库.NET扩展服务的一部分。 (非必须启动)<br>OracleOraDb11g_home1TNSListener：监听器服务，服务只有在数据库需要远程访问的时候才需要。(非必须启动)。<br>补充：包括本地使用PL/SQL Developer等第三方工具时，也要启动。<br>OracleServiceORCL：数据库服务(数据库实例)，是Oracle核心服务该服务，是数据库启动的基础， 只有该服务启动，Oracle数据库才能正常启动。(必须启动)<br>关闭非必须启动的服务以节省系统资源。在没有使用oracle的时候，也可以关闭OracleServiceORCL（占用内存很大）。</p>
+<p><img src="https://s1.ax1x.com/2020/03/17/8tLZR0.png" alt="image"></p>
+<p><img src="https://s1.ax1x.com/2020/03/17/8tLezV.png" alt="image"></p>
+<p><img src="https://s1.ax1x.com/2020/03/17/8tLnMT.png" alt="image"></p>
+<p><img src="https://s1.ax1x.com/2020/03/17/8tLusU.png" alt="image"></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-【orcl问题】安装中遇到的问题" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/03/16/【orcl问题】安装中遇到的问题/" class="article-date">
+      <time datetime="2020-03-16T08:50:43.000Z" itemprop="datePublished">2020-03-16</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/16/【orcl问题】安装中遇到的问题/">【orcl问题】安装中遇到的问题</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="在windouws-service-2012中安装orcl-遇到的问题"><a href="#在windouws-service-2012中安装orcl-遇到的问题" class="headerlink" title="在windouws service 2012中安装orcl 遇到的问题"></a>在windouws service 2012中安装orcl 遇到的问题</h1><ol>
+<li><p>无临时路径访问权限<br> 可能user没有权限 也可能 文件共享没有打开</p>
+<p> 在我的共享里面查看是否没有c盘的共享，若没有，则</p>
+<p> 在命令行输入：net share C$=C://开启共享</p>
+<ol>
+<li>先弄好c$ share的问题 （按上面方法）</li>
+<li>测试一下 c$ share 是否成功. 方法是在cmd里打net use \localhost\c$ 失败会是这样子…: 系统错误53<br>The network path was not found. 成功是这样子: 命令成功完成。 </li>
+</ol>
+</li>
+</ol>
+<h1 id="发生系统错误-67-…（自己遇到的）"><a href="#发生系统错误-67-…（自己遇到的）" class="headerlink" title="发生系统错误 67 …（自己遇到的）"></a>发生系统错误 67 …（自己遇到的）</h1><pre><code>检查B机子中的Server、WorkStation、TCP/IP 上的 NetBIOS、Computer Browser服务是否启动，要拷贝的db_backup是否已经设置为共享文件夹
+</code></pre><h1 id="还可以查看注册表"><a href="#还可以查看注册表" class="headerlink" title="还可以查看注册表"></a>还可以查看注册表</h1><p>第一步：检查AutoShareServer和AutoShareWks注册表值，以确保未将它们设置为0。依次点击“开始→运行”，输入regedit，然后按回车键进入注册表编辑器。<br>第二步：找到并单击HKEY_LOCAL_MACHINE\System\Current ControlSet\Services\LanmanServer\Parameters。   </p>
+<p>第三步：如果LanmanServerParameter s子项中的AutoShareServer 和AutoShareWks DWORD值配置的数值为0，则将该值更改为1</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-orcl定时任务jobs与树行菜单的查询" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/12/31/orcl定时任务jobs与树行菜单的查询/" class="article-date">
+      <time datetime="2019-12-31T08:50:18.000Z" itemprop="datePublished">2019-12-31</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/31/orcl定时任务jobs与树行菜单的查询/">orcl定时任务jobs与树行菜单的查询</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h2><pre><code>定时任务可以在数据库设置定时任务，减少服务器与数据库不必要的连接。
+数据库中定时任务称为作业 jobs
+plsql可以很好设置jobs
+</code></pre><h2 id="树形结构"><a href="#树形结构" class="headerlink" title="树形结构"></a>树形结构</h2><pre><code>很多时候会使用到多级的菜单功能 使用mybatis可以通过配置减少代码 完成多级菜单。
+</code></pre><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">"BaseResultMap"</span> <span class="attr">type</span>=<span class="string">"com.***"</span>&gt;</span></span>
+<span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"ID"</span> <span class="attr">jdbcType</span>=<span class="string">"VARCHAR"</span> <span class="attr">property</span>=<span class="string">"id"</span> /&gt;</span></span>
+<span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"PID"</span> <span class="attr">jdbcType</span>=<span class="string">"VARCHAR"</span> <span class="attr">property</span>=<span class="string">"pid"</span> /&gt;</span></span>
+<span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"NAME"</span> <span class="attr">jdbcType</span>=<span class="string">"VARCHAR"</span> <span class="attr">property</span>=<span class="string">"name"</span> /&gt;</span></span>
+<span class="line">    <span class="tag">&lt;<span class="name">collection</span> <span class="attr">property</span>=<span class="string">"childs"</span> <span class="attr">column</span>=<span class="string">"ID"</span> <span class="attr">select</span>=<span class="string">"findTreeData"</span> <span class="attr">ofType</span>=<span class="string">"BaseResultMap"</span>/&gt;</span></span>
+<span class="line">  <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span>
+<span class="line"></span>
+<span class="line">  <span class="comment">&lt;!--子节点查询sql语句--&gt;</span></span>
+<span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findTreeData"</span> <span class="attr">resultMap</span>=<span class="string">"BaseResultMap"</span>&gt;</span></span>
+<span class="line">    select * from **** where PID=#&#123;ID&#125; ORDER BY ORDER_ID ASC</span>
+<span class="line">  <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span>
+</pre></td></tr></table></figure>
+<collection property="childs" column="ID" select="findTreeData" oftype="BaseResultMap">
+
+<p>property 是jopo关联的属性一般为list  手动加上</p>
+<p>column 是传递的参数</p>
+<p>select 使用的方法</p>
+<p>ofType 返回的类型</p>
+<p>在封装父亲节点后会递归执行findTreeData方法 获取子节点</p>
+<h2 id="双数据源读写"><a href="#双数据源读写" class="headerlink" title="双数据源读写"></a>双数据源读写</h2><ol>
+<li><p>微服务可以轻松实现</p>
+</li>
+<li><p>db link orcl 创建db link 使用存储过程 远程调用远程的 存储过程</p>
+</li>
+<li><p>双数据源切换 </p>
+</li>
+</ol>
+</collection>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-预防猪脑war包部署" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/12/24/预防猪脑war包部署/" class="article-date">
+      <time datetime="2019-12-24T08:21:44.000Z" itemprop="datePublished">2019-12-24</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/24/预防猪脑war包部署/">预防猪脑war包部署</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="人脑似猪脑-记个war包部署"><a href="#人脑似猪脑-记个war包部署" class="headerlink" title="人脑似猪脑 记个war包部署"></a>人脑似猪脑 记个war包部署</h1><h2 id="idea配置项目-使项目可以生成war包"><a href="#idea配置项目-使项目可以生成war包" class="headerlink" title="idea配置项目 使项目可以生成war包"></a>idea配置项目 使项目可以生成war包</h2><p>1.project stucture 界面 aritifacts +个war包</p>
+<h2 id="菜单-build-artifacts-生成war包"><a href="#菜单-build-artifacts-生成war包" class="headerlink" title="菜单 build artifacts 生成war包"></a>菜单 build artifacts 生成war包</h2><h2 id="tomcat-项目目录下-启动-齐活"><a href="#tomcat-项目目录下-启动-齐活" class="headerlink" title="tomcat 项目目录下 启动 齐活"></a>tomcat 项目目录下 启动 齐活</h2>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="springboot-druid多数据源配置" class="article article-type-springboot" itemscope itemprop="blogPost">
   
@@ -474,465 +1078,6 @@
 
 
   
-    <article id="post-redis基本记录" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/06/09/redis基本记录/" class="article-date">
-      <time datetime="2019-06-08T23:45:40.000Z" itemprop="datePublished">2019-06-09</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/09/redis基本记录/">redis基本记录</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="记录一下Redis的一些学习"><a href="#记录一下Redis的一些学习" class="headerlink" title="记录一下Redis的一些学习"></a>记录一下Redis的一些学习</h1><ol>
-<li><p>Redis看了些基础发现比较容易理解基本操作都是围绕set与get两个指令进行</p>
-          
-      
-    </li></ol></div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/06/09/redis基本记录/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-【随笔】分类" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/06/06/【随笔】分类/" class="article-date">
-      <time datetime="2019-06-06T11:13:29.000Z" itemprop="datePublished">2019-06-06</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/06/【随笔】分类/">【随笔】添加分类方法</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="博客中添加分类的方法"><a href="#博客中添加分类的方法" class="headerlink" title="博客中添加分类的方法"></a>博客中添加分类的方法</h1>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/06/06/【随笔】分类/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-【LeetCode】reverseList" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/06/06/【LeetCode】reverseList/" class="article-date">
-      <time datetime="2019-06-06T05:39:38.000Z" itemprop="datePublished">2019-06-06</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/06/【LeetCode】reverseList/">【LeetCode】reverseList</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="翻转链表"><a href="#翻转链表" class="headerlink" title="翻转链表"></a>翻转链表</h1><h2 id="递归思路"><a href="#递归思路" class="headerlink" title="递归思路"></a>递归思路</h2>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/06/06/【LeetCode】reverseList/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-【LeetCode】removeNthFromEnd" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/06/06/【LeetCode】removeNthFromEnd/" class="article-date">
-      <time datetime="2019-06-06T05:20:36.000Z" itemprop="datePublished">2019-06-06</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/06/【LeetCode】removeNthFromEnd/">【LeetCode】removeNthFromEnd</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="删除倒数第-n-个节点"><a href="#删除倒数第-n-个节点" class="headerlink" title="删除倒数第 n 个节点"></a>删除倒数第 n 个节点</h1><h2 id="思路-1"><a href="#思路-1" class="headerlink" title="思路 1:"></a>思路 1:</h2><ol>
-<li>循环第一次找出链表长度;
-          
-      
-    </li></ol></div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/06/06/【LeetCode】removeNthFromEnd/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Spring错误记录" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/05/29/Spring错误记录/" class="article-date">
-      <time datetime="2019-05-29T12:23:44.827Z" itemprop="datePublished">2019-05-29</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/29/Spring错误记录/">Spring错误记录</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="SpringCloud-学习中的错误记录-1"><a href="#SpringCloud-学习中的错误记录-1" class="headerlink" title="SpringCloud 学习中的错误记录 1"></a>SpringCloud 学习中的错误记录 1</h1><p>No fallbackFactory instance of type class xxx found for feign client</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2019/05/29/Spring错误记录/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Echarts需要的数据" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/03/10/Echarts需要的数据/" class="article-date">
-      <time datetime="2019-03-10T06:07:08.000Z" itemprop="datePublished">2019-03-10</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/10/Echarts需要的数据/">Echarts需要的数据</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="记录下用于论文中使用"><a href="#记录下用于论文中使用" class="headerlink" title="记录下用于论文中使用"></a>记录下用于论文中使用</h1><p>需要实现的功能是Echarts折线图统计员工业务情况</p>
-<p><em>N/S图</em><br><img src="https://s2.ax1x.com/2019/06/10/VycOr8.png" alt="img"></p>
-<p><em>代码实现</em><br>
-          
-      
-    </p></div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/03/10/Echarts需要的数据/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-前后端分离跨域问题" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/02/13/前后端分离跨域问题/" class="article-date">
-      <time datetime="2019-02-13T00:31:43.000Z" itemprop="datePublished">2019-02-13</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/13/前后端分离跨域问题/">前后端分离跨域问题</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="Response-to-preflight-request-doesn’t-pass-access-control-check-No-‘Access-Control-Allow-Origin’-header-is-present-on-the-requested-resource"><a href="#Response-to-preflight-request-doesn’t-pass-access-control-check-No-‘Access-Control-Allow-Origin’-header-is-present-on-the-requested-resource" class="headerlink" title="Response to preflight request doesn’t pass access control check: No ‘Access-Control-Allow-Origin’ header is present on the requested resource"></a>Response to preflight request doesn’t pass access control check: No ‘Access-Control-Allow-Origin’ header is present on the requested resource</h1><p>跨域问题也不是第一次遇到了- -特意查了下为啥会有这个问题<br>查到的资料显示是不同端口之间通信造成的不同源，<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy" target="_blank" rel="noopener">同源策略</a> </p>
-<p> 1.前台axios修改</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建axios实例</span></span>
-<span class="line"><span class="keyword">const</span> service = axios.create(&#123;</span>
-<span class="line">  baseURL: process.env.BASE_API, <span class="comment">// api的base_url</span></span>
-<span class="line">  timeout: <span class="number">5000</span>, <span class="comment">// 请求超时时间</span></span>
-<span class="line">  withCredentials: <span class="literal">true</span>,<span class="comment">//跨域</span></span>
-<span class="line">  headers: &#123;</span>
-<span class="line">    <span class="string">"Content-Type"</span>: <span class="string">"application/x-www-form-urlencoded"</span></span>
-<span class="line">  &#125;<span class="comment">//跨域</span></span>
-<span class="line">&#125;);</span>
-</pre></td></tr></table></figure>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/02/13/前后端分离跨域问题/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -944,7 +1089,7 @@
         <div id="footer-info">
             <div class="footer-left">
                 <i class="fa fa-copyright"></i> 
-                2016-2019 Axiu_J
+                2016-2020 Axiu_J
             </div>
             <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>

@@ -15,18 +15,17 @@
 
 
 
-<meta name="description" content="org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.axiuj.springcloud.providerduty.dao. 查看下面一行代码 错误为ms==null抛出 为未找到xml文件 查看是否配置或目录出错 通过调试发现在抛出异常的位置上一行是进行xml文件判断的判断语句 如">
-<meta name="keywords" content="随笔">
+<meta name="description" content="jdk的总结jdk包含jre；jre包含jvm虚拟机  jdk包括开发常用到的一些工具如 javac 命令  jre感觉像一些规范或者说sdk一类的东西，  jvm虚拟机具体在下面 jvm虚拟机不同系统安装的jvm虚拟机是不一样的，但其架构是一样的都包含 内存模块 与 非内存模块  内存模块:运行时的数据存储区域 可以分为（堆 栈 本地方法区 方法区(元空间) 程序计数器 ）  非内存模块:类装载">
 <meta property="og:type" content="article">
-<meta property="og:title" content="BindingException">
-<meta property="og:url" content="http://yoursite.com/2019/02/01/BindingException/index.html">
+<meta property="og:title" content="【jdk与jvm】jdk与jvm还有回收机制的学习爱总结">
+<meta property="og:url" content="http://yoursite.com/2020/04/08/【jdk与jvm】jdk与jvm还有回收机制的学习爱总结/index.html">
 <meta property="og:site_name" content="AxiuJ的博客">
-<meta property="og:description" content="org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.axiuj.springcloud.providerduty.dao. 查看下面一行代码 错误为ms==null抛出 为未找到xml文件 查看是否配置或目录出错 通过调试发现在抛出异常的位置上一行是进行xml文件判断的判断语句 如">
+<meta property="og:description" content="jdk的总结jdk包含jre；jre包含jvm虚拟机  jdk包括开发常用到的一些工具如 javac 命令  jre感觉像一些规范或者说sdk一类的东西，  jvm虚拟机具体在下面 jvm虚拟机不同系统安装的jvm虚拟机是不一样的，但其架构是一样的都包含 内存模块 与 非内存模块  内存模块:运行时的数据存储区域 可以分为（堆 栈 本地方法区 方法区(元空间) 程序计数器 ）  非内存模块:类装载">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-09T00:41:50.322Z">
+<meta property="og:updated_time" content="2020-04-08T08:56:24.828Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BindingException">
-<meta name="twitter:description" content="org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.axiuj.springcloud.providerduty.dao. 查看下面一行代码 错误为ms==null抛出 为未找到xml文件 查看是否配置或目录出错 通过调试发现在抛出异常的位置上一行是进行xml文件判断的判断语句 如">
+<meta name="twitter:title" content="【jdk与jvm】jdk与jvm还有回收机制的学习爱总结">
+<meta name="twitter:description" content="jdk的总结jdk包含jre；jre包含jvm虚拟机  jdk包括开发常用到的一些工具如 javac 命令  jre感觉像一些规范或者说sdk一类的东西，  jvm虚拟机具体在下面 jvm虚拟机不同系统安装的jvm虚拟机是不一样的，但其架构是一样的都包含 内存模块 与 非内存模块  内存模块:运行时的数据存储区域 可以分为（堆 栈 本地方法区 方法区(元空间) 程序计数器 ）  非内存模块:类装载">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -58,7 +57,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>BindingException | AxiuJ的博客</title>
+<title>【jdk与jvm】jdk与jvm还有回收机制的学习爱总结 | AxiuJ的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -262,11 +261,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-BindingException" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-【jdk与jvm】jdk与jvm还有回收机制的学习爱总结" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/02/01/BindingException/" class="article-date">
-      <time datetime="2019-02-01T00:39:02.000Z" itemprop="datePublished">2019-02-01</time>
+      <a href="/2020/04/08/【jdk与jvm】jdk与jvm还有回收机制的学习爱总结/" class="article-date">
+      <time datetime="2020-04-08T07:05:57.000Z" itemprop="datePublished">2020-04-08</time>
 </a>
 
 
@@ -281,7 +280,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      BindingException
+      【jdk与jvm】jdk与jvm还有回收机制的学习爱总结
     </h1>
   
 
@@ -291,10 +290,6 @@
         
 
         
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
-    </div>
-
         <div class="clearfix"></div>
       </div>
       
@@ -302,11 +297,74 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><strong>org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.axiuj.springcloud.providerduty.dao.</strong></p>
-<p>查看下面一行代码 错误为ms==null抛出 为未找到xml文件 查看是否配置或目录出错</p>
-<p>通过调试发现在抛出异常的位置上一行是进行xml文件判断的判断语句</p>
-<p>如果没有找到xml配置文件将会抛出异常；</p>
-<p>所以应该查看一下SpringBoot中yml配置中是不是写错了mybaits mapping的路径。</p>
+        <h1 id="jdk的总结"><a href="#jdk的总结" class="headerlink" title="jdk的总结"></a>jdk的总结</h1><pre><code>jdk包含jre；jre包含jvm虚拟机
+
+jdk包括开发常用到的一些工具如 javac 命令
+
+jre感觉像一些规范或者说sdk一类的东西，
+
+jvm虚拟机具体在下面
+</code></pre><h1 id="jvm虚拟机"><a href="#jvm虚拟机" class="headerlink" title="jvm虚拟机"></a>jvm虚拟机</h1><pre><code>不同系统安装的jvm虚拟机是不一样的，但其架构是一样的都包含 内存模块 与 非内存模块
+
+内存模块:运行时的数据存储区域 可以分为（堆 栈 本地方法区 方法区(元空间) 程序计数器 ）
+
+非内存模块:类装载子系统 字节码执行引擎 
+</code></pre><h1 id="一切从javac之后说起"><a href="#一切从javac之后说起" class="headerlink" title="一切从javac之后说起"></a>一切从javac之后说起</h1><h2 id="1-类装载子系统"><a href="#1-类装载子系统" class="headerlink" title="1. 类装载子系统"></a>1. 类装载子系统</h2><pre><code>类装载子系统 分为两部分 一部分为自己实现的（自定义类装载器） 一部分为java虚拟机自己实现的（启动类装载器），why？好像是有过最大bug来着- -;
+
+所以装载器会负责 找到并验证.class文件进行装载。之后为变量分配空间。（扔在堆区- -）而类信息都会给扔在方法区(元空间)。
+</code></pre><h2 id="2-栈"><a href="#2-栈" class="headerlink" title="2. 栈"></a>2. 栈</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(Strig[] array)</span></span>&#123;</span>
+<span class="line">    System.out.println(<span class="string">"1"</span>);</span>
+<span class="line">    <span class="keyword">this</span>.sum();</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sum</span><span class="params">()</span></span>&#123;</span>
+<span class="line">    <span class="keyword">int</span> a = <span class="number">1</span>;</span>
+<span class="line">    <span class="keyword">int</span> b = <span class="number">2</span>;</span>
+<span class="line">    <span class="keyword">int</span> c = a + b;</span>
+<span class="line">&#125;</span>
+</pre></td></tr></table></figure>
+<pre><code>栈，先进后出。程序执行线将main线程压栈执行到调用其他方法的时候 将sum线程压入栈 这样就可以了sum线程就在main线程上方需要先执sum线程。
+
+每个线程在栈中的空间称为（栈帧），ps帧不是视频中的概念吗，好像也挺形象的。
+
+在每个栈帧中可以细分为几个块（ 局部变量区 操作数栈 动态链接 方法出口 ）
+</code></pre><h3 id="2-1-栈帧（-局部变量区-操作数栈-动态链接-方法出口-）"><a href="#2-1-栈帧（-局部变量区-操作数栈-动态链接-方法出口-）" class="headerlink" title="2.1 栈帧（ 局部变量区 操作数栈 动态链接 方法出口 ）"></a>2.1 栈帧（ 局部变量区 操作数栈 动态链接 方法出口 ）</h3><pre><code>线程在会将局部变量区的变量取出放入操作数栈中，也不一定会放入变量，也会放入操作数。进行运算。
+
+执行结束后这一栈帧就会出栈 继续执行main线程
+</code></pre><h2 id="3-元空间"><a href="#3-元空间" class="headerlink" title="3 元空间"></a>3 元空间</h2><pre><code>1.8之前叫永久态 以后称为元空间 
+
+常量 静态变量 类信息 方法信息 会放在这里（反射？）
+</code></pre><h2 id="4-本地方法区"><a href="#4-本地方法区" class="headerlink" title="4 本地方法区"></a>4 本地方法区</h2><pre><code>调用其他语言编写的方法就是在本地方法区，c语言，技术发展慢慢不用了。
+</code></pre><h1 id="字节码执行引擎"><a href="#字节码执行引擎" class="headerlink" title="字节码执行引擎"></a>字节码执行引擎</h1><pre><code>主要负责修改程序计数器中的数值
+
+以及执行.class文件
+</code></pre><h1 id="各个区的大小分配"><a href="#各个区的大小分配" class="headerlink" title="各个区的大小分配"></a>各个区的大小分配</h1><pre><code>堆内存可以分为（Eden区 Survivor区 Old区）
+
+在这几个区中Old最大占用整个堆内存的2/3;
+
+Eden 与Survivor 占 1/3;
+
+Eden 占1/3的百分之80;
+
+Survivor 占1/3的百分之20;
+
+Survivor 平方为 Survivor0 与 Survivor1 两个区
+</code></pre><h1 id="对象的去与留"><a href="#对象的去与留" class="headerlink" title="对象的去与留"></a>对象的去与留</h1><pre><code>新new的对象会在Eden区 
+
+Eden区第一次满时 会进行一次小规模的垃圾清理minor gc;清理未被引用的对象（垃圾对象）。被引用的对象(非垃圾对象)会被移动到Survivor0区。引用标记+1。
+
+第二次满的时候 会在执行一次minor gc 与第一次不同这一次会连带 Survivor0区一起扫描。清理垃圾，非垃圾对象 标记+1 移动到Survivor1区。
+
+就这样非垃圾对象会在两个区中来回跳转，垃圾对象会被清理，(ps 筛子- -) 在标记到15的时候，移动到Old区。 
+
+当一个对象移入Survivor0或Survivor1区时，但是其内存大小大于Survivor0或Survivor1的百分之50，那么会直接移入Old区。
+
+当Old满了后会执行full gc 全堆垃圾清理。
+</code></pre><h2 id="minor-gc-与full-gc"><a href="#minor-gc-与full-gc" class="headerlink" title="minor gc 与full gc"></a>minor gc 与full gc</h2><pre><code>这两个操作都是字节码执行引擎来执行的 区别在于程序暂停时间（STW） minor gc 程序暂停时间少，基本感觉不到 full gc 程序暂停时间多 优化中应该尽量减少full gc的执行次数 
+</code></pre><h2 id="简单的优化"><a href="#简单的优化" class="headerlink" title="简单的优化"></a>简单的优化</h2><pre><code>设置虚拟机-Xmn2048M 参数 设置Eden区为2g 这样Survivor的内存大小就会变大，减少因为大于百分之50的情况而造成的Old区短时间被塞满。
+</code></pre><p><a href="https://blog.csdn.net/qq_41970025/article/details/105289273?fps=1&amp;locationNum=2" target="_blank" rel="noopener">常考的csdn博客</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=416976590&amp;idx=1&amp;sn=22823ada76d8cfd26a43e8d3a7b7a60e&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">CLASS类的一生</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=416915373&amp;idx=1&amp;sn=f80a13b099237534a3ef777d511d831a&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">线程</a></p>
 
       
     </div>
@@ -315,13 +373,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/02/01/BindingException/">BindingException</a></p>
+        <p><span>本文标题:</span><a href="/2020/04/08/【jdk与jvm】jdk与jvm还有回收机制的学习爱总结/">【jdk与jvm】jdk与jvm还有回收机制的学习爱总结</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Axiu_J</a></p>
-        <p><span>发布时间:</span>2019-02-01, 08:39:02</p>
-        <p><span>最后更新:</span>2019-06-09, 08:41:50</p>
+        <p><span>发布时间:</span>2020-04-08, 15:05:57</p>
+        <p><span>最后更新:</span>2020-04-08, 16:56:24</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/02/01/BindingException/" title="BindingException">http://yoursite.com/2019/02/01/BindingException/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/02/01/BindingException/　　作者: Axiu_J" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2020/04/08/【jdk与jvm】jdk与jvm还有回收机制的学习爱总结/" title="【jdk与jvm】jdk与jvm还有回收机制的学习爱总结">http://yoursite.com/2020/04/08/【jdk与jvm】jdk与jvm还有回收机制的学习爱总结/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2020/04/08/【jdk与jvm】jdk与jvm还有回收机制的学习爱总结/　　作者: Axiu_J" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -333,12 +391,12 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/02/13/前后端分离跨域问题/">
-                    前后端分离跨域问题
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2020/04/07/【MySql】索引学习总结/">
+                    【MySql】索引学习总结
                 </a>
             </div>
-        
         
     </nav>
 
@@ -348,7 +406,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jdk的总结"><span class="toc-number">1.</span> <span class="toc-text">jdk的总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jvm虚拟机"><span class="toc-number">2.</span> <span class="toc-text">jvm虚拟机</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一切从javac之后说起"><span class="toc-number">3.</span> <span class="toc-text">一切从javac之后说起</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-类装载子系统"><span class="toc-number">3.1.</span> <span class="toc-text">1. 类装载子系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-栈"><span class="toc-number">3.2.</span> <span class="toc-text">2. 栈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-栈帧（-局部变量区-操作数栈-动态链接-方法出口-）"><span class="toc-number">3.2.1.</span> <span class="toc-text">2.1 栈帧（ 局部变量区 操作数栈 动态链接 方法出口 ）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-元空间"><span class="toc-number">3.3.</span> <span class="toc-text">3 元空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-本地方法区"><span class="toc-number">3.4.</span> <span class="toc-text">4 本地方法区</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#字节码执行引擎"><span class="toc-number">4.</span> <span class="toc-text">字节码执行引擎</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#各个区的大小分配"><span class="toc-number">5.</span> <span class="toc-text">各个区的大小分配</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#对象的去与留"><span class="toc-number">6.</span> <span class="toc-text">对象的去与留</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#minor-gc-与full-gc"><span class="toc-number">6.1.</span> <span class="toc-text">minor gc 与full gc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单的优化"><span class="toc-number">6.2.</span> <span class="toc-text">简单的优化</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -384,7 +442,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"BindingException　| AxiuJ的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"【jdk与jvm】jdk与jvm还有回收机制的学习爱总结　| AxiuJ的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -404,15 +462,15 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/02/13/前后端分离跨域问题/" title="上一篇: 前后端分离跨域问题">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2020/04/07/【MySql】索引学习总结/" title="下一篇: 【MySql】索引学习总结">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
 
