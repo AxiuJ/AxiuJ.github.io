@@ -15,17 +15,17 @@
 
 
 
-<meta name="description" content="出现bug的情况在使用renren开源项目做二次开发的时候，由于会使用到多数据源，而业务有自己独立的一个用户表，需要保留renren用户与业务用户都开源使用的情况，想同时查询两张表：更改完登入接口后，由于使用shrio做权限管理。在业务用户service中方法需要切换到业务数据源，但是aop不生效。 出现的原因代码层面未弄清楚，出现的原因就是bean会在shrio的Realm对象创建前创建，不会被">
+<meta name="description" content="出现bug的情况 在使用renren开源项目做二次开发的时候，由于会使用到多数据源，而业务有自己独立的一个用户表，需要保留renren用户与业务用户都开源使用的情况，想同时查询两张表：更改完登入接口后，由于使用shrio做权限管理。在业务用户service中方法需要切换到业务数据源，但是aop不生效。  出现的原因 代码层面未弄清楚，出现的原因就是bean会在shrio的Realm对象创建前创建，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="shiro依赖的bean无法使用切面">
 <meta property="og:url" content="http://yoursite.com/2020/07/24/shiro依赖的bean无法使用切面/index.html">
 <meta property="og:site_name" content="AxiuJ的博客">
-<meta property="og:description" content="出现bug的情况在使用renren开源项目做二次开发的时候，由于会使用到多数据源，而业务有自己独立的一个用户表，需要保留renren用户与业务用户都开源使用的情况，想同时查询两张表：更改完登入接口后，由于使用shrio做权限管理。在业务用户service中方法需要切换到业务数据源，但是aop不生效。 出现的原因代码层面未弄清楚，出现的原因就是bean会在shrio的Realm对象创建前创建，不会被">
+<meta property="og:description" content="出现bug的情况 在使用renren开源项目做二次开发的时候，由于会使用到多数据源，而业务有自己独立的一个用户表，需要保留renren用户与业务用户都开源使用的情况，想同时查询两张表：更改完登入接口后，由于使用shrio做权限管理。在业务用户service中方法需要切换到业务数据源，但是aop不生效。  出现的原因 代码层面未弄清楚，出现的原因就是bean会在shrio的Realm对象创建前创建，">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-07-24T07:51:32.323Z">
+<meta property="og:updated_time" content="2020-07-24T09:01:19.131Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="shiro依赖的bean无法使用切面">
-<meta name="twitter:description" content="出现bug的情况在使用renren开源项目做二次开发的时候，由于会使用到多数据源，而业务有自己独立的一个用户表，需要保留renren用户与业务用户都开源使用的情况，想同时查询两张表：更改完登入接口后，由于使用shrio做权限管理。在业务用户service中方法需要切换到业务数据源，但是aop不生效。 出现的原因代码层面未弄清楚，出现的原因就是bean会在shrio的Realm对象创建前创建，不会被">
+<meta name="twitter:description" content="出现bug的情况 在使用renren开源项目做二次开发的时候，由于会使用到多数据源，而业务有自己独立的一个用户表，需要保留renren用户与业务用户都开源使用的情况，想同时查询两张表：更改完登入接口后，由于使用shrio做权限管理。在业务用户service中方法需要切换到业务数据源，但是aop不生效。  出现的原因 代码层面未弄清楚，出现的原因就是bean会在shrio的Realm对象创建前创建，">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -297,9 +297,13 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="出现bug的情况"><a href="#出现bug的情况" class="headerlink" title="出现bug的情况"></a>出现bug的情况</h1><pre><code>在使用renren开源项目做二次开发的时候，由于会使用到多数据源，而业务有自己独立的一个用户表，需要保留renren用户与业务用户都开源使用的情况，想同时查询两张表：更改完登入接口后，由于使用shrio做权限管理。在业务用户service中方法需要切换到业务数据源，但是aop不生效。
-</code></pre><h1 id="出现的原因"><a href="#出现的原因" class="headerlink" title="出现的原因"></a>出现的原因</h1><pre><code>代码层面未弄清楚，出现的原因就是bean会在shrio的Realm对象创建前创建，不会被spring bean工厂管理导致aop不起作用
-</code></pre><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><pre><code>@Lazy 注解加载 需要注入的service上
+        <h1 id="出现bug的情况"><a href="#出现bug的情况" class="headerlink" title="出现bug的情况"></a>出现bug的情况</h1><ol>
+<li>在使用renren开源项目做二次开发的时候，由于会使用到多数据源，而业务有自己独立的一个用户表，需要保留renren用户与业务用户都开源使用的情况，想同时查询两张表：更改完登入接口后，由于使用shrio做权限管理。在业务用户service中方法需要切换到业务数据源，但是aop不生效。</li>
+</ol>
+<h1 id="出现的原因"><a href="#出现的原因" class="headerlink" title="出现的原因"></a>出现的原因</h1><ol>
+<li>代码层面未弄清楚，出现的原因就是bean会在shrio的Realm对象创建前创建，不会被spring bean工厂管理导致aop不起作用</li>
+</ol>
+<h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><pre><code>@Lazy 注解加载 需要注入的service上
 </code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span>
 <span class="line"><span class="meta">@Lazy</span></span>
 <span class="line">UserRoleService userRoleService;</span>
@@ -316,7 +320,7 @@
         <p><span>本文标题:</span><a href="/2020/07/24/shiro依赖的bean无法使用切面/">shiro依赖的bean无法使用切面</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Axiu_J</a></p>
         <p><span>发布时间:</span>2020-07-24, 15:30:05</p>
-        <p><span>最后更新:</span>2020-07-24, 15:51:32</p>
+        <p><span>最后更新:</span>2020-07-24, 17:01:19</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2020/07/24/shiro依赖的bean无法使用切面/" title="shiro依赖的bean无法使用切面">http://yoursite.com/2020/07/24/shiro依赖的bean无法使用切面/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2020/07/24/shiro依赖的bean无法使用切面/　　作者: Axiu_J" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
