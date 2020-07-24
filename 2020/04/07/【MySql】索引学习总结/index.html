@@ -15,22 +15,22 @@
 
 
 
-<meta name="description" content="索引索引分为聚合索引与非聚合索引 聚合索引（数据与索引在一个文件下）innodb存储引擎所用的就是聚合索引   innodb在磁盘中的存储文件  ifm文件为表结构信息存储文件，ibd为数据以及索引存储文件。 非聚合索引（数据与索引在不同文件下）myisam存储引擎所使用的就是非聚合索引  myisam在磁盘中的存储文件  ifm为表结构信息存储文件,myd为数据文件,myi为索引文件。 索引的存">
+<meta name="description" content="索引索引分为聚合索引与非聚合索引 聚合索引（数据与索引在一个文件下）innodb存储引擎所用的就是聚合索引   innodb在磁盘中的存储文件  ifm文件为表结构信息存储文件，ibd为数据以及索引存储文件。">
 <meta name="keywords" content="学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【MySql】索引学习总结">
 <meta property="og:url" content="http://yoursite.com/2020/04/07/【MySql】索引学习总结/index.html">
 <meta property="og:site_name" content="AxiuJ的博客">
-<meta property="og:description" content="索引索引分为聚合索引与非聚合索引 聚合索引（数据与索引在一个文件下）innodb存储引擎所用的就是聚合索引   innodb在磁盘中的存储文件  ifm文件为表结构信息存储文件，ibd为数据以及索引存储文件。 非聚合索引（数据与索引在不同文件下）myisam存储引擎所使用的就是非聚合索引  myisam在磁盘中的存储文件  ifm为表结构信息存储文件,myd为数据文件,myi为索引文件。 索引的存">
+<meta property="og:description" content="索引索引分为聚合索引与非聚合索引 聚合索引（数据与索引在一个文件下）innodb存储引擎所用的就是聚合索引   innodb在磁盘中的存储文件  ifm文件为表结构信息存储文件，ibd为数据以及索引存储文件。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://s1.ax1x.com/2020/04/07/G6xGKe.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/04/07/G6znsg.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/04/07/GcP9UJ.jpg">
 <meta property="og:image" content="https://s1.ax1x.com/2020/04/07/GcCzbF.jpg">
-<meta property="og:updated_time" content="2020-04-07T02:02:54.747Z">
+<meta property="og:updated_time" content="2020-04-08T09:04:52.210Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【MySql】索引学习总结">
-<meta name="twitter:description" content="索引索引分为聚合索引与非聚合索引 聚合索引（数据与索引在一个文件下）innodb存储引擎所用的就是聚合索引   innodb在磁盘中的存储文件  ifm文件为表结构信息存储文件，ibd为数据以及索引存储文件。 非聚合索引（数据与索引在不同文件下）myisam存储引擎所使用的就是非聚合索引  myisam在磁盘中的存储文件  ifm为表结构信息存储文件,myd为数据文件,myi为索引文件。 索引的存">
+<meta name="twitter:description" content="索引索引分为聚合索引与非聚合索引 聚合索引（数据与索引在一个文件下）innodb存储引擎所用的就是聚合索引   innodb在磁盘中的存储文件  ifm文件为表结构信息存储文件，ibd为数据以及索引存储文件。">
 <meta name="twitter:image" content="https://s1.ax1x.com/2020/04/07/G6xGKe.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -313,7 +313,8 @@
 <pre><code>innodb在磁盘中的存储文件
 
 ifm文件为表结构信息存储文件，ibd为数据以及索引存储文件。
-</code></pre><h2 id="非聚合索引（数据与索引在不同文件下）"><a href="#非聚合索引（数据与索引在不同文件下）" class="headerlink" title="非聚合索引（数据与索引在不同文件下）"></a>非聚合索引（数据与索引在不同文件下）</h2><pre><code>myisam存储引擎所使用的就是非聚合索引
+</code></pre><a id="more"></a>
+<h2 id="非聚合索引（数据与索引在不同文件下）"><a href="#非聚合索引（数据与索引在不同文件下）" class="headerlink" title="非聚合索引（数据与索引在不同文件下）"></a>非聚合索引（数据与索引在不同文件下）</h2><pre><code>myisam存储引擎所使用的就是非聚合索引
 </code></pre><p><img src="https://s1.ax1x.com/2020/04/07/G6znsg.png" alt="myisam在磁盘中的存储文件"></p>
 <pre><code>myisam在磁盘中的存储文件
 
@@ -337,7 +338,7 @@ ifm为表结构信息存储文件,myd为数据文件,myi为索引文件。
         <p><span>本文标题:</span><a href="/2020/04/07/【MySql】索引学习总结/">【MySql】索引学习总结</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Axiu_J</a></p>
         <p><span>发布时间:</span>2020-04-07, 09:09:46</p>
-        <p><span>最后更新:</span>2020-04-07, 10:02:54</p>
+        <p><span>最后更新:</span>2020-04-08, 17:04:52</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2020/04/07/【MySql】索引学习总结/" title="【MySql】索引学习总结">http://yoursite.com/2020/04/07/【MySql】索引学习总结/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2020/04/07/【MySql】索引学习总结/　　作者: Axiu_J" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -443,7 +444,7 @@ ifm为表结构信息存储文件,myd为数据文件,myi为索引文件。
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/04/08/【jdk与jvm】jdk与jvm还有回收机制的学习爱总结/">【jdk与jvm】jdk与jvm还有回收机制的学习爱总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/07/【MySql】索引学习总结/">【MySql】索引学习总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/01/【代码】利用Hutool生成execl与zip/">【代码】利用Hutool生成execl与zip</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/17/【orcl】数据库安装教程11g/">【orcl】数据库安装教程11g</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/16/【orcl问题】安装中遇到的问题/">【orcl问题】安装中遇到的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/31/orcl定时任务jobs与树行菜单的查询/">orcl定时任务jobs与树行菜单的查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/24/预防猪脑war包部署/">预防猪脑war包部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/12/druid多数据源配置/">druid多数据源配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/26/mybatisExample文件/">mybatisExample文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/22/security学习文档/">security学习文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/09/redis基本记录/">redis基本记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/06/【随笔】分类/">【随笔】添加分类方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/06/【LeetCode】reverseList/">【LeetCode】reverseList</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/06/【LeetCode】removeNthFromEnd/">【LeetCode】removeNthFromEnd</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/29/Spring错误记录/">Spring错误记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/10/Echarts需要的数据/">Echarts需要的数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/13/前后端分离跨域问题/">前后端分离跨域问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/01/BindingException/">BindingException</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/07/24/shiro依赖的bean无法使用切面/">shiro依赖的bean无法使用切面</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/06/24/在非spring管理的bean中读取yml配置文件/">在非spring管理的bean中读取yml配置文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/08/【jdk与jvm】jdk与jvm还有回收机制的学习爱总结/">【jdk与jvm】jdk与jvm还有回收机制的学习爱总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/07/【MySql】索引学习总结/">【MySql】索引学习总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/01/【代码】利用Hutool生成execl与zip/">【代码】利用Hutool生成execl与zip</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/17/【orcl】数据库安装教程11g/">【orcl】数据库安装教程11g</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/16/【orcl问题】安装中遇到的问题/">【orcl问题】安装中遇到的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/31/orcl定时任务jobs与树行菜单的查询/">orcl定时任务jobs与树行菜单的查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/24/预防猪脑war包部署/">预防猪脑war包部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/12/druid多数据源配置/">druid多数据源配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/26/mybatisExample文件/">mybatisExample文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/22/security学习文档/">security学习文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/09/redis基本记录/">redis基本记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/06/【随笔】分类/">【随笔】添加分类方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/06/【LeetCode】reverseList/">【LeetCode】reverseList</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/06/【LeetCode】removeNthFromEnd/">【LeetCode】removeNthFromEnd</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/29/Spring错误记录/">Spring错误记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/10/Echarts需要的数据/">Echarts需要的数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/13/前后端分离跨域问题/">前后端分离跨域问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/01/BindingException/">BindingException</a></li></ul>
 
 
 

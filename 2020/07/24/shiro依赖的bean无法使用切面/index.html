@@ -15,17 +15,17 @@
 
 
 
-<meta name="description" content="生成execl1234567891011121314//指定xls位置 File file = new File(&quot;D:\table\表.xls&quot;); ExcelWriter writer = ExcelUtil.getWriter(file); //datalist为需要写入的数据 List 数据库中查出可以用List&amp;lt;Map&amp;lt;&amp;gt;&amp;gt; 接收并用别名使写xls时表头为中文 w">
+<meta name="description" content="出现bug的情况在使用renren开源项目做二次开发的时候，由于会使用到多数据源，而业务有自己独立的一个用户表，需要保留renren用户与业务用户都开源使用的情况，想同时查询两张表：更改完登入接口后，由于使用shrio做权限管理。在业务用户service中方法需要切换到业务数据源，但是aop不生效。 出现的原因代码层面未弄清楚，出现的原因就是bean会在shrio的Realm对象创建前创建，不会被">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【代码】利用Hutool生成execl与zip">
-<meta property="og:url" content="http://yoursite.com/2020/04/01/【代码】利用Hutool生成execl与zip/index.html">
+<meta property="og:title" content="shiro依赖的bean无法使用切面">
+<meta property="og:url" content="http://yoursite.com/2020/07/24/shiro依赖的bean无法使用切面/index.html">
 <meta property="og:site_name" content="AxiuJ的博客">
-<meta property="og:description" content="生成execl1234567891011121314//指定xls位置 File file = new File(&quot;D:\table\表.xls&quot;); ExcelWriter writer = ExcelUtil.getWriter(file); //datalist为需要写入的数据 List 数据库中查出可以用List&amp;lt;Map&amp;lt;&amp;gt;&amp;gt; 接收并用别名使写xls时表头为中文 w">
+<meta property="og:description" content="出现bug的情况在使用renren开源项目做二次开发的时候，由于会使用到多数据源，而业务有自己独立的一个用户表，需要保留renren用户与业务用户都开源使用的情况，想同时查询两张表：更改完登入接口后，由于使用shrio做权限管理。在业务用户service中方法需要切换到业务数据源，但是aop不生效。 出现的原因代码层面未弄清楚，出现的原因就是bean会在shrio的Realm对象创建前创建，不会被">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-04-01T10:05:20.560Z">
+<meta property="og:updated_time" content="2020-07-24T07:51:32.323Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【代码】利用Hutool生成execl与zip">
-<meta name="twitter:description" content="生成execl1234567891011121314//指定xls位置 File file = new File(&quot;D:\table\表.xls&quot;); ExcelWriter writer = ExcelUtil.getWriter(file); //datalist为需要写入的数据 List 数据库中查出可以用List&amp;lt;Map&amp;lt;&amp;gt;&amp;gt; 接收并用别名使写xls时表头为中文 w">
+<meta name="twitter:title" content="shiro依赖的bean无法使用切面">
+<meta name="twitter:description" content="出现bug的情况在使用renren开源项目做二次开发的时候，由于会使用到多数据源，而业务有自己独立的一个用户表，需要保留renren用户与业务用户都开源使用的情况，想同时查询两张表：更改完登入接口后，由于使用shrio做权限管理。在业务用户service中方法需要切换到业务数据源，但是aop不生效。 出现的原因代码层面未弄清楚，出现的原因就是bean会在shrio的Realm对象创建前创建，不会被">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -57,7 +57,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>【代码】利用Hutool生成execl与zip | AxiuJ的博客</title>
+<title>shiro依赖的bean无法使用切面 | AxiuJ的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -261,11 +261,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-【代码】利用Hutool生成execl与zip" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-shiro依赖的bean无法使用切面" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2020/04/01/【代码】利用Hutool生成execl与zip/" class="article-date">
-      <time datetime="2020-04-01T09:52:07.000Z" itemprop="datePublished">2020-04-01</time>
+      <a href="/2020/07/24/shiro依赖的bean无法使用切面/" class="article-date">
+      <time datetime="2020-07-24T07:30:05.000Z" itemprop="datePublished">2020-07-24</time>
 </a>
 
 
@@ -280,7 +280,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      【代码】利用Hutool生成execl与zip
+      shiro依赖的bean无法使用切面
     </h1>
   
 
@@ -297,28 +297,15 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="生成execl"><a href="#生成execl" class="headerlink" title="生成execl"></a>生成execl</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//指定xls位置</span></span>
-<span class="line">File file = <span class="keyword">new</span> File(<span class="string">"D:\table\表.xls"</span>);</span>
-<span class="line">ExcelWriter writer = ExcelUtil.getWriter(file);</span>
-<span class="line"><span class="comment">//datalist为需要写入的数据 List 数据库中查出可以用List&lt;Map&lt;&gt;&gt; 接收并用别名使写xls时表头为中文</span></span>
-<span class="line">writer.write(dataList);</span>
-<span class="line"><span class="comment">//设置个列宽度</span></span>
-<span class="line">writer.setColumnWidth(<span class="number">0</span>, <span class="number">10</span>)</span>
-<span class="line">        .setColumnWidth(<span class="number">1</span>, <span class="number">10</span>)</span>
-<span class="line">        .setColumnWidth(<span class="number">2</span>, <span class="number">36</span>)</span>
-<span class="line">        .setColumnWidth(<span class="number">3</span>, <span class="number">18</span>)</span>
-<span class="line">        .setColumnWidth(<span class="number">4</span>, <span class="number">10</span>)</span>
-<span class="line">        .setColumnWidth(<span class="number">5</span>, <span class="number">10</span>);</span>
-<span class="line"><span class="comment">//写出</span></span>
-<span class="line">writer.flush();</span>
+        <h1 id="出现bug的情况"><a href="#出现bug的情况" class="headerlink" title="出现bug的情况"></a>出现bug的情况</h1><pre><code>在使用renren开源项目做二次开发的时候，由于会使用到多数据源，而业务有自己独立的一个用户表，需要保留renren用户与业务用户都开源使用的情况，想同时查询两张表：更改完登入接口后，由于使用shrio做权限管理。在业务用户service中方法需要切换到业务数据源，但是aop不生效。
+</code></pre><h1 id="出现的原因"><a href="#出现的原因" class="headerlink" title="出现的原因"></a>出现的原因</h1><pre><code>代码层面未弄清楚，出现的原因就是bean会在shrio的Realm对象创建前创建，不会被spring bean工厂管理导致aop不起作用
+</code></pre><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><pre><code>@Lazy 注解加载 需要注入的service上
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span>
+<span class="line"><span class="meta">@Lazy</span></span>
+<span class="line">UserRoleService userRoleService;</span>
 </pre></td></tr></table></figure>
-<p><a href="https://apidoc.gitee.com/loolly/hutool/cn/hutool/poi/excel/ExcelWriter.html" target="_blank" rel="noopener">附Hutool-ExcelWriter Api文档</a> </p>
-<h1 id="生成zip压缩包"><a href="#生成zip压缩包" class="headerlink" title="生成zip压缩包"></a>生成zip压缩包</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//path为需要打包的路径 打包后压缩文件为此目录的父级目录</span></span>
-<span class="line"><span class="comment">//path="D:\table\word" 打包后为D:\table\word.zip</span></span>
-<span class="line">ZipUtil.zip(path);</span>
-</pre></td></tr></table></figure>
-<p><a href="https://www.hutool.cn/docs/#/core/%E5%B7%A5%E5%85%B7%E7%B1%BB/%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7-ZipUtil" target="_blank" rel="noopener">附Hutool-ExcelZipUtil Api文档</a> </p>
-
+<pre><code>@Lazy 会延迟加载bean这样bean的创建就会由sprin bean工厂负责并管理（有待考证）
+</code></pre>
       
     </div>
     
@@ -326,13 +313,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2020/04/01/【代码】利用Hutool生成execl与zip/">【代码】利用Hutool生成execl与zip</a></p>
+        <p><span>本文标题:</span><a href="/2020/07/24/shiro依赖的bean无法使用切面/">shiro依赖的bean无法使用切面</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Axiu_J</a></p>
-        <p><span>发布时间:</span>2020-04-01, 17:52:07</p>
-        <p><span>最后更新:</span>2020-04-01, 18:05:20</p>
+        <p><span>发布时间:</span>2020-07-24, 15:30:05</p>
+        <p><span>最后更新:</span>2020-07-24, 15:51:32</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2020/04/01/【代码】利用Hutool生成execl与zip/" title="【代码】利用Hutool生成execl与zip">http://yoursite.com/2020/04/01/【代码】利用Hutool生成execl与zip/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2020/04/01/【代码】利用Hutool生成execl与zip/　　作者: Axiu_J" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2020/07/24/shiro依赖的bean无法使用切面/" title="shiro依赖的bean无法使用切面">http://yoursite.com/2020/07/24/shiro依赖的bean无法使用切面/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2020/07/24/shiro依赖的bean无法使用切面/　　作者: Axiu_J" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -344,16 +331,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2020/04/07/【MySql】索引学习总结/">
-                    【MySql】索引学习总结
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2020/03/17/【orcl】数据库安装教程11g/">
-                    【orcl】数据库安装教程11g
+                <a href="/2020/06/24/在非spring管理的bean中读取yml配置文件/">
+                    在非spring管理的bean中读取yml配置文件
                 </a>
             </div>
         
@@ -365,7 +346,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#生成execl"><span class="toc-number">1.</span> <span class="toc-text">生成execl</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#生成zip压缩包"><span class="toc-number">2.</span> <span class="toc-text">生成zip压缩包</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#出现bug的情况"><span class="toc-number">1.</span> <span class="toc-text">出现bug的情况</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#出现的原因"><span class="toc-number">2.</span> <span class="toc-text">出现的原因</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解决办法"><span class="toc-number">3.</span> <span class="toc-text">解决办法</span></a></li></ol>
         
     </div>
     <style>
@@ -401,7 +382,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"【代码】利用Hutool生成execl与zip　| AxiuJ的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"shiro依赖的bean无法使用切面　| AxiuJ的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -421,15 +402,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2020/04/07/【MySql】索引学习总结/" title="上一篇: 【MySql】索引学习总结">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2020/03/17/【orcl】数据库安装教程11g/" title="下一篇: 【orcl】数据库安装教程11g">
+            <a href="/2020/06/24/在非spring管理的bean中读取yml配置文件/" title="下一篇: 在非spring管理的bean中读取yml配置文件">
                 <i class="fa fa-angle-right"></i>
             </a>
         

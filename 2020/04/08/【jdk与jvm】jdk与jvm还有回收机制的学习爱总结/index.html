@@ -22,7 +22,7 @@
 <meta property="og:site_name" content="AxiuJ的博客">
 <meta property="og:description" content="jdk的总结jdk包含jre；jre包含jvm虚拟机  jdk包括开发常用到的一些工具如 javac 命令  jre感觉像一些规范或者说sdk一类的东西，  jvm虚拟机具体在下面 jvm虚拟机不同系统安装的jvm虚拟机是不一样的，但其架构是一样的都包含 内存模块 与 非内存模块  内存模块:运行时的数据存储区域 可以分为（堆 栈 本地方法区 方法区(元空间) 程序计数器 ）  非内存模块:类装载">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-04-08T08:56:24.828Z">
+<meta property="og:updated_time" content="2020-04-09T01:55:09.885Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【jdk与jvm】jdk与jvm还有回收机制的学习爱总结">
 <meta name="twitter:description" content="jdk的总结jdk包含jre；jre包含jvm虚拟机  jdk包括开发常用到的一些工具如 javac 命令  jre感觉像一些规范或者说sdk一类的东西，  jvm虚拟机具体在下面 jvm虚拟机不同系统安装的jvm虚拟机是不一样的，但其架构是一样的都包含 内存模块 与 非内存模块  内存模块:运行时的数据存储区域 可以分为（堆 栈 本地方法区 方法区(元空间) 程序计数器 ）  非内存模块:类装载">
@@ -309,7 +309,8 @@ jvm虚拟机具体在下面
 内存模块:运行时的数据存储区域 可以分为（堆 栈 本地方法区 方法区(元空间) 程序计数器 ）
 
 非内存模块:类装载子系统 字节码执行引擎 
-</code></pre><h1 id="一切从javac之后说起"><a href="#一切从javac之后说起" class="headerlink" title="一切从javac之后说起"></a>一切从javac之后说起</h1><h2 id="1-类装载子系统"><a href="#1-类装载子系统" class="headerlink" title="1. 类装载子系统"></a>1. 类装载子系统</h2><pre><code>类装载子系统 分为两部分 一部分为自己实现的（自定义类装载器） 一部分为java虚拟机自己实现的（启动类装载器），why？好像是有过最大bug来着- -;
+</code></pre><a id="more"></a>
+<h1 id="一切从javac之后说起"><a href="#一切从javac之后说起" class="headerlink" title="一切从javac之后说起"></a>一切从javac之后说起</h1><h2 id="1-类装载子系统"><a href="#1-类装载子系统" class="headerlink" title="1. 类装载子系统"></a>1. 类装载子系统</h2><pre><code>类装载子系统 分为两部分 一部分为自己实现的（自定义类装载器） 一部分为java虚拟机自己实现的（启动类装载器），why？好像是有过最大bug来着- -;
 
 所以装载器会负责 找到并验证.class文件进行装载。之后为变量分配空间。（扔在堆区- -）而类信息都会给扔在方法区(元空间)。
 </code></pre><h2 id="2-栈"><a href="#2-栈" class="headerlink" title="2. 栈"></a>2. 栈</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(Strig[] array)</span></span>&#123;</span>
@@ -360,8 +361,22 @@ Eden区第一次满时 会进行一次小规模的垃圾清理minor gc;清理未
 当一个对象移入Survivor0或Survivor1区时，但是其内存大小大于Survivor0或Survivor1的百分之50，那么会直接移入Old区。
 
 当Old满了后会执行full gc 全堆垃圾清理。
+</code></pre><h2 id="移入Old的几种情况"><a href="#移入Old的几种情况" class="headerlink" title="移入Old的几种情况"></a>移入Old的几种情况</h2><pre><code>当一个对象移入Survivor0或Survivor1区时，但是其内存大小大于Survivor0或Survivor1的百分之50，那么会直接移入Old区。
+
+创建对象大于预设值会直接进入Old区。-XX:PretenureSizeThreshold
+
+存活对象标记满15次会进入Old区。
 </code></pre><h2 id="minor-gc-与full-gc"><a href="#minor-gc-与full-gc" class="headerlink" title="minor gc 与full gc"></a>minor gc 与full gc</h2><pre><code>这两个操作都是字节码执行引擎来执行的 区别在于程序暂停时间（STW） minor gc 程序暂停时间少，基本感觉不到 full gc 程序暂停时间多 优化中应该尽量减少full gc的执行次数 
-</code></pre><h2 id="简单的优化"><a href="#简单的优化" class="headerlink" title="简单的优化"></a>简单的优化</h2><pre><code>设置虚拟机-Xmn2048M 参数 设置Eden区为2g 这样Survivor的内存大小就会变大，减少因为大于百分之50的情况而造成的Old区短时间被塞满。
+</code></pre><h3 id="full-gc触发条件"><a href="#full-gc触发条件" class="headerlink" title="full gc触发条件"></a>full gc触发条件</h3><ol>
+<li><p>方法区满了</p>
+</li>
+<li><p>Old区满了</p>
+</li>
+<li><p>需要移入Old区的数据大于Old区剩余空间</p>
+</li>
+</ol>
+<p><a href="https://www.cnblogs.com/aademeng/articles/11028623.html" target="_blank" rel="noopener">参考博客</a></p>
+<h2 id="简单的优化"><a href="#简单的优化" class="headerlink" title="简单的优化"></a>简单的优化</h2><pre><code>设置虚拟机-Xmn2048M 参数 设置Eden区为2g 这样Survivor的内存大小就会变大，减少因为大于百分之50的情况而造成的Old区短时间被塞满。
 </code></pre><p><a href="https://blog.csdn.net/qq_41970025/article/details/105289273?fps=1&amp;locationNum=2" target="_blank" rel="noopener">常考的csdn博客</a></p>
 <p><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=416976590&amp;idx=1&amp;sn=22823ada76d8cfd26a43e8d3a7b7a60e&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">CLASS类的一生</a></p>
 <p><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=416915373&amp;idx=1&amp;sn=f80a13b099237534a3ef777d511d831a&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">线程</a></p>
@@ -376,7 +391,7 @@ Eden区第一次满时 会进行一次小规模的垃圾清理minor gc;清理未
         <p><span>本文标题:</span><a href="/2020/04/08/【jdk与jvm】jdk与jvm还有回收机制的学习爱总结/">【jdk与jvm】jdk与jvm还有回收机制的学习爱总结</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Axiu_J</a></p>
         <p><span>发布时间:</span>2020-04-08, 15:05:57</p>
-        <p><span>最后更新:</span>2020-04-08, 16:56:24</p>
+        <p><span>最后更新:</span>2020-04-09, 09:55:09</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2020/04/08/【jdk与jvm】jdk与jvm还有回收机制的学习爱总结/" title="【jdk与jvm】jdk与jvm还有回收机制的学习爱总结">http://yoursite.com/2020/04/08/【jdk与jvm】jdk与jvm还有回收机制的学习爱总结/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2020/04/08/【jdk与jvm】jdk与jvm还有回收机制的学习爱总结/　　作者: Axiu_J" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -390,6 +405,12 @@ Eden区第一次满时 会进行一次小规模的垃圾清理minor gc;清理未
 
 
     <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2020/06/24/在非spring管理的bean中读取yml配置文件/">
+                    在非spring管理的bean中读取yml配置文件
+                </a>
+            </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
@@ -406,7 +427,7 @@ Eden区第一次满时 会进行一次小规模的垃圾清理minor gc;清理未
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jdk的总结"><span class="toc-number">1.</span> <span class="toc-text">jdk的总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jvm虚拟机"><span class="toc-number">2.</span> <span class="toc-text">jvm虚拟机</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一切从javac之后说起"><span class="toc-number">3.</span> <span class="toc-text">一切从javac之后说起</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-类装载子系统"><span class="toc-number">3.1.</span> <span class="toc-text">1. 类装载子系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-栈"><span class="toc-number">3.2.</span> <span class="toc-text">2. 栈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-栈帧（-局部变量区-操作数栈-动态链接-方法出口-）"><span class="toc-number">3.2.1.</span> <span class="toc-text">2.1 栈帧（ 局部变量区 操作数栈 动态链接 方法出口 ）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-元空间"><span class="toc-number">3.3.</span> <span class="toc-text">3 元空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-本地方法区"><span class="toc-number">3.4.</span> <span class="toc-text">4 本地方法区</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#字节码执行引擎"><span class="toc-number">4.</span> <span class="toc-text">字节码执行引擎</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#各个区的大小分配"><span class="toc-number">5.</span> <span class="toc-text">各个区的大小分配</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#对象的去与留"><span class="toc-number">6.</span> <span class="toc-text">对象的去与留</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#minor-gc-与full-gc"><span class="toc-number">6.1.</span> <span class="toc-text">minor gc 与full gc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单的优化"><span class="toc-number">6.2.</span> <span class="toc-text">简单的优化</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jdk的总结"><span class="toc-number">1.</span> <span class="toc-text">jdk的总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jvm虚拟机"><span class="toc-number">2.</span> <span class="toc-text">jvm虚拟机</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一切从javac之后说起"><span class="toc-number">3.</span> <span class="toc-text">一切从javac之后说起</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-类装载子系统"><span class="toc-number">3.1.</span> <span class="toc-text">1. 类装载子系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-栈"><span class="toc-number">3.2.</span> <span class="toc-text">2. 栈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-栈帧（-局部变量区-操作数栈-动态链接-方法出口-）"><span class="toc-number">3.2.1.</span> <span class="toc-text">2.1 栈帧（ 局部变量区 操作数栈 动态链接 方法出口 ）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-元空间"><span class="toc-number">3.3.</span> <span class="toc-text">3 元空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-本地方法区"><span class="toc-number">3.4.</span> <span class="toc-text">4 本地方法区</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#字节码执行引擎"><span class="toc-number">4.</span> <span class="toc-text">字节码执行引擎</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#各个区的大小分配"><span class="toc-number">5.</span> <span class="toc-text">各个区的大小分配</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#对象的去与留"><span class="toc-number">6.</span> <span class="toc-text">对象的去与留</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#移入Old的几种情况"><span class="toc-number">6.1.</span> <span class="toc-text">移入Old的几种情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#minor-gc-与full-gc"><span class="toc-number">6.2.</span> <span class="toc-text">minor gc 与full gc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#full-gc触发条件"><span class="toc-number">6.2.1.</span> <span class="toc-text">full gc触发条件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单的优化"><span class="toc-number">6.3.</span> <span class="toc-text">简单的优化</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -462,7 +483,9 @@ Eden区第一次满时 会进行一次小规模的垃圾清理minor gc;清理未
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2020/06/24/在非spring管理的bean中读取yml配置文件/" title="上一篇: 在非spring管理的bean中读取yml配置文件">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
@@ -474,7 +497,7 @@ Eden区第一次满时 会进行一次小规模的垃圾清理minor gc;清理未
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/04/08/【jdk与jvm】jdk与jvm还有回收机制的学习爱总结/">【jdk与jvm】jdk与jvm还有回收机制的学习爱总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/07/【MySql】索引学习总结/">【MySql】索引学习总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/01/【代码】利用Hutool生成execl与zip/">【代码】利用Hutool生成execl与zip</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/17/【orcl】数据库安装教程11g/">【orcl】数据库安装教程11g</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/16/【orcl问题】安装中遇到的问题/">【orcl问题】安装中遇到的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/31/orcl定时任务jobs与树行菜单的查询/">orcl定时任务jobs与树行菜单的查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/24/预防猪脑war包部署/">预防猪脑war包部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/12/druid多数据源配置/">druid多数据源配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/26/mybatisExample文件/">mybatisExample文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/22/security学习文档/">security学习文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/09/redis基本记录/">redis基本记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/06/【随笔】分类/">【随笔】添加分类方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/06/【LeetCode】reverseList/">【LeetCode】reverseList</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/06/【LeetCode】removeNthFromEnd/">【LeetCode】removeNthFromEnd</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/29/Spring错误记录/">Spring错误记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/10/Echarts需要的数据/">Echarts需要的数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/13/前后端分离跨域问题/">前后端分离跨域问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/01/BindingException/">BindingException</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/07/24/shiro依赖的bean无法使用切面/">shiro依赖的bean无法使用切面</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/06/24/在非spring管理的bean中读取yml配置文件/">在非spring管理的bean中读取yml配置文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/08/【jdk与jvm】jdk与jvm还有回收机制的学习爱总结/">【jdk与jvm】jdk与jvm还有回收机制的学习爱总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/07/【MySql】索引学习总结/">【MySql】索引学习总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/01/【代码】利用Hutool生成execl与zip/">【代码】利用Hutool生成execl与zip</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/17/【orcl】数据库安装教程11g/">【orcl】数据库安装教程11g</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/16/【orcl问题】安装中遇到的问题/">【orcl问题】安装中遇到的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/31/orcl定时任务jobs与树行菜单的查询/">orcl定时任务jobs与树行菜单的查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/24/预防猪脑war包部署/">预防猪脑war包部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/12/druid多数据源配置/">druid多数据源配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/26/mybatisExample文件/">mybatisExample文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/22/security学习文档/">security学习文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/09/redis基本记录/">redis基本记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/06/【随笔】分类/">【随笔】添加分类方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/06/【LeetCode】reverseList/">【LeetCode】reverseList</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/06/【LeetCode】removeNthFromEnd/">【LeetCode】removeNthFromEnd</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/29/Spring错误记录/">Spring错误记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/10/Echarts需要的数据/">Echarts需要的数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/13/前后端分离跨域问题/">前后端分离跨域问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/01/BindingException/">BindingException</a></li></ul>
 
 
 
