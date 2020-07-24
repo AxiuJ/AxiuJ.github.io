@@ -296,12 +296,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="出现bug的情况"><a href="#出现bug的情况" class="headerlink" title="出现bug的情况"></a>出现bug的情况</h1><ol>
-<li>在使用renren开源项目做二次开发的时候，由于会使用到多数据源，而业务有自己独立的一个用户表，需要保留renren用户与业务用户都开源使用的情况，想同时查询两张表：更改完登入接口后，由于使用shrio做权限管理。在业务用户service中方法需要切换到业务数据源，但是aop不生效。</li>
-</ol>
-<h1 id="出现的原因"><a href="#出现的原因" class="headerlink" title="出现的原因"></a>出现的原因</h1><ol>
-<li>代码层面未弄清楚，出现的原因就是bean会在shrio的Realm对象创建前创建，不会被spring bean工厂管理导致aop不起作用</li>
-</ol>
+        <h1 id="出现bug的情况"><a href="#出现bug的情况" class="headerlink" title="出现bug的情况"></a>出现bug的情况</h1><p>在使用renren开源项目做二次开发的时候，由于会使用到多数据源，而业务有自己独立的一个用户表，需要保留renren用户与业务用户都开源使用的情况，想同时查询两张表：更改完登入接口后，由于使用shrio做权限管理。在业务用户service中方法需要切换到业务数据源，但是aop不生效。</p>
+<h1 id="出现的原因"><a href="#出现的原因" class="headerlink" title="出现的原因"></a>出现的原因</h1><p>代码层面未弄清楚，出现的原因就是bean会在shrio的Realm对象创建前创建，不会被spring bean工厂管理导致aop不起作用</p>
 <h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><pre><code>@Lazy 注解加载 需要注入的service上
 </code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span>
 <span class="line"><span class="meta">@Lazy</span></span>
